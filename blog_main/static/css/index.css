@@ -1,0 +1,16 @@
+ /* Color Variables */
+        :root {
+            --maroon: #800000;
+            --gold: #FFD700;
+            --darkgold: #D4AF37;
+            --darkengold: #f39849;
+            --darkred: #5E1914;
+            --nature: #2E8B57;
+            --dark-bg: #fef6f6;
+            --light-text: #ecd6d6;
+            --gray-text: #bcacac;
+            --card-bg: #1a1a1a;
+        }
+.blog-header py-3{
+background-color: var(--gold);
+}
