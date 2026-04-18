@@ -1,8 +1,4 @@
-/* ============================================
-   KNOWLEDGE DOSE - PROFESSIONAL BLOG CSS
-   Logo Left | Buttons Right | Featured Posts Grid
-   With Infinite Scrolling Navbar
-   ============================================ */
+
 
 /* --------------------------------------------
    IMPORTS
@@ -459,9 +455,13 @@ body {
     transition: var(--transition);
     line-height: 1.4;
 }
-
-.post-card:hover .post-title {
+.post-title .text-white {
     color: var(--gold);
+    text-decoration: none;
+}
+
+.post-card:hover .post-title .text-white {
+    color: var(--white);
 }
 
 .post-excerpt {
@@ -592,7 +592,7 @@ html {
     outline-offset: 2px;
     border-radius: 4px;
 }
-card-body {
+.card-body {
     padding: 25px;
 }
 
@@ -605,13 +605,17 @@ card-body {
     font-family: 'Playfair Display', serif;
     line-height: 1.4;
 }
-
-.card:hover .card-body h3 {
-    color: var(--gold);
+.card-body h3 .text-white{
+      color: var(--gold);
+    text-decoration: none;
+}
+.card-body h3:hover .text-white{
+    color: var(--white);
 }
 
+
 .card .text-muted {
-    color: var(--white);
+    color: var(--gold);
     font-size: 0.75rem;
     display: block;
     margin-bottom: 12px;
@@ -658,9 +662,13 @@ card-body {
 
 .lead {
     font-size: 1.1rem;
-    color: var(--gold);
+    color: var(--white);
     margin-bottom: 25px;
     line-height: 1.6;
+}
+.lead .text-white {
+    color: var(--gold);
+    text-decoration: none;
 }
 
 /* --------------------------------------------
@@ -840,6 +848,7 @@ color: var(--gold);
     .col-md-8, .col-md-4 {
         flex: 0 0 100%;
         max-width: 100%;
+        
     }
     
     .blog-sidebar {

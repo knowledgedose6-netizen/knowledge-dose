@@ -8,9 +8,9 @@
   {% if forloop.first %}
 <div class="jumbotron p-3 p-md-5 " style="background-image: url({{ post.featured_image.url}}); background-position: center; background-repeat: no-repeat;background-blend-mode: overlay;background-size:cover;">
     <div class="col-md-8 px-0">
-      <h1 class="display-4 " style="color: gold;">{{ post.title }}</h1>
+      <h1 class="display-4 ">{{ post.title }}</h1>
       <p class="lead my-3">{{ post.short_description | truncatewords:70 }}</p>
-      <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p>
+      <p class="lead mb-0"><a href="{% url 'blogs' post.slug  %}" class="text-white font-weight-bold" style="text-align: center;">Continue reading...</a></p>
     </div>
   </div>
   {% endif %}
@@ -39,7 +39,7 @@
                         <span class="post-category">{{ post.category|default:"Uncategorized" }}</span>
                         <span class="post-read-time">{{ post.read_time|default:"6" }} min read</span>
                     </div>
-                    <h3 class="post-title">{{ post.title }}</h3>
+                    <h3 class="post-title"><a href="{% url 'blogs' post.slug  %}" class="text-white">{{ post.title }}</a></h3>
                     <p class="post-excerpt">{{ post.short_description|truncatewords:20 }}</p>
                     <div class="post-footer">
                         <span class="post-author">
@@ -75,7 +75,7 @@
         {% for post in posts %}
         <div class="card border-0" >
           <div class="card-body">
-            <h3>{{ post.title }}</h3>
+            <h3><a href="{% url 'blogs' post.slug  %}" class="text-white">{{ post.title }}</a></h3>
             <small class="mb-1 text-muted"> {{post.created_at | timesince }} ago | {{ post.author}} </small>
             <p class="card-text">{{ post.short_description | truncatewords:25 }}</p>
           </div>
@@ -86,17 +86,20 @@
 
       <aside class="col-md-4 blog-sidebar">
         <div class="p-3 mb-3 bg-light rounded">
-          <h4 class="font-italic">About</h4>
-          <p class="mb-0">Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+          <h4 class="font-italic">{{ about.about_heading }}</h4>
+          <p class="mb-0">{{ about.about_description }}</p>
         </div>
 
+          {% if social_links %}
         <div class="p-3">
           <h4 class="font-italic">Follow Us</h4>
           <ol class="list-unstyled">
-            <li><a href="#">GitHub</a></li>
-            <li><a href="#">LinkedIn</a></li>
+            {% for i in social_links %}
+            <li><a href="{{ i.link }}" target="_blank">{{ i.platform }}</a></li>
+            {% endfor %}
           </ol>
         </div>
+        {% endif %}
       </aside><!-- /.blog-sidebar -->
 
     </div><!-- /.row -->
