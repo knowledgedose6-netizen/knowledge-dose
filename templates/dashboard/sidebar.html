@@ -1,0 +1,21 @@
+<div class="dashboard-sidebar-wrapper">
+    <div class="dashboard-sidebar-nav">
+        <a href="{% url 'dashboard' %}" class="dashboard-sidebar-link {% if '/dashboard/' == request.path %}dashboard-sidebar-active{% endif %}">
+            Dashboard
+        </a>
+        {% if perms.auth.view_user %}
+        <a href="{% url 'users' %}" class="dashboard-sidebar-link {% if '/users/' in request.path %}dashboard-sidebar-active{% endif %}">
+            Users
+        </a>
+        {% endif %}
+        <a href="{% url 'categories' %}" class="dashboard-sidebar-link {% if '/categories/' in request.path %}dashboard-sidebar-active{% endif %}">
+            Categories
+        </a>
+        <a href="{% url 'posts' %}" class="dashboard-sidebar-link {% if '/posts/' in request.path %}dashboard-sidebar-active{% endif %}">
+            Posts
+        </a>
+        <a href="#" class="dashboard-sidebar-link dashboard-sidebar-logout">
+            Logout
+        </a>
+    </div>
+</div>

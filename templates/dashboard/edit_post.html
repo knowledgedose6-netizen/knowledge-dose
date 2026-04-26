@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="editpost-main-container">
+    <!-- Left sidebar -->
+    <div class="editpost-sidebar-wrapper">
+        {% include 'dashboard/sidebar.html' %}
+    </div>
+
+    <!-- Right side content -->
+    <div class="editpost-form-container">
+        <div class="editpost-card">
+            <div class="editpost-card-header">
+                <h2 class="editpost-card-title">Edit Blog Post</h2>
+                <p class="editpost-card-subtitle">Update your blog post content and settings</p>
+            </div>
+            
+            <form action="{% url 'edit_post' post.id %}" method="POST" enctype="multipart/form-data" class="editpost-custom-form">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <div class="editpost-button-group">
+                    <button type="submit" class="editpost-btn-submit">
+                        <i class="fa fa-save"></i> Update Post
+                    </button>
+                    <a href="{% url 'posts' %}" class="editpost-btn-cancel">
+                        <i class="fa fa-arrow-left"></i> Back to Posts
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

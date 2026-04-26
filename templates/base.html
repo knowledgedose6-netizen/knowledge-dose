@@ -8,17 +8,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Django Blogs</title>
-     <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.mi.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
-    <link href="{% static 'css/bbb.css' %}" rel="stylesheet">
-     <link href="{% static 'css/blogs.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bb.css' %}" rel="stylesheet">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
 <body>
     <div class="container">
-      <header class="blog-header py-3" style="background-color:maroon;">
+      <header class="blog-header py-3">
         <div class="row flex-nowrap justify-content-between align-items-center">
           <div class="col-8 pt-1">
-            <a class="blog-header-logo text-dark" href="/">   <img src="{% static 'images/log.png' %}" alt="Knowledge Dose" style="height: 60px; width: auto;"><p1 style="color:goldenrod;">Knowledge Dose</p></a>
+            <a class="blog-header-logo text-dark" href="/">   <img src="{% static 'images/log.png' %}" alt="Knowledge Dose"><p>Knowledge Dose</p></a>
           </div>
            <div class="col-4">
             <form action="{% url 'search' %}" method="GET">
@@ -33,9 +32,9 @@
             <a class="btn btn-sm btn-warning" href="{% url 'login' %}">Login in</a> &nbsp;
             <a class="btn btn-sm btn-outline-secondary" href="{% url 'register' %}">Register</a>
             {% else %}
-            <span style="color: gold; text-decoration: none;"> you are logged in as {{ user }}</span>
+            <span><a href="{% url 'dashboard' %}">Dashboard</a></span>
             &emsp;
-            <span><a href="{% url 'logout' %}" style="color: gold;text-decoration: none;">Logout</a></span>
+            <span><a href="{% url 'logout' %}">Logout</a></span>
             {% endif %}
           </div>
         </div>
@@ -54,7 +53,7 @@
         {% endblock %}
       <!-- footer part -->
          <footer class="blog-footer">
-  <p>Django blog built with � by <a href="#">SANIA JAVED</a></p>
+  <p>Knowledge Dose Blogs built with by <a href="#">ASA</a></p>
 </footer>
 
 </body>

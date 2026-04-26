@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="dashboard-main-row">
+    <!-- Left sidebar -->
+    <!-- load the sidebar here -->
+    {% include 'dashboard/sidebar.html' %}
+
+    <!-- Right side content -->
+    <div class="dashboard-main-content">
+        <span class="dashboard-welcome-user">Logged in as <b>{{ user }}</b></span>
+        <div class="dashboard-stats-wrapper">
+            <div class="dashboard-stat-item">
+                <div class="dashboard-stat-card">
+                    <div class="dashboard-stat-card-header">All Categories</div>
+                    <div class="dashboard-stat-card-body">
+                        <h5 class="dashboard-stat-number">{{ category_count }}</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-stat-item">
+                <div class="dashboard-stat-card">
+                    <div class="dashboard-stat-card-header">All Posts</div>
+                    <div class="dashboard-stat-card-body">
+                        <h5 class="dashboard-stat-number">{{ blogs_count }}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -4,8 +4,8 @@
 {% block content %}
 {% load crispy_forms_tags %}
 
-<h3 class="text-center">Register</h3>
-<form action="{% url 'register' %}" method="POST" style="width:500px; margin:auto;">
+<h3 class="text-center"><p style="text-align: center;">Register</p></h3>
+<form action="{% url 'register' %}" method="POST" style="width:500px; margin:auto;" class="register-form">
     {% csrf_token %}
     {{ form | crispy }}
     <button type="submit" class="btn btn-warning">Submit</button>

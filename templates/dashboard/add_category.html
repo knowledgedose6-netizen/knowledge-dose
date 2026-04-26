@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="addcategory-main-container">
+    <!-- Left sidebar -->
+    <div class="addcategory-sidebar-wrapper">
+        {% include 'dashboard/sidebar.html' %}
+    </div>
+
+    <!-- Right side content -->
+    <div class="addcategory-form-container">
+        <div class="addcategory-card">
+            <div class="addcategory-card-header">
+                <h2 class="addcategory-card-title">Add New Category</h2>
+                <p class="addcategory-card-subtitle">Create a new category for your blog posts</p>
+            </div>
+            
+            <form action="{% url 'add_category' %}" method="POST" class="addcategory-custom-form">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <div class="addcategory-button-group">
+                    <button type="submit" class="addcategory-btn-submit">
+                        <i class="fa fa-save"></i> Create Category
+                    </button>
+                    <a href="{% url 'categories' %}" class="addcategory-btn-cancel">
+                        <i class="fa fa-arrow-left"></i> Back to Categories
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

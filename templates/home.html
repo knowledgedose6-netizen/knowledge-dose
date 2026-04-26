@@ -6,11 +6,11 @@
 
 {% for post in featured_posts %}   
   {% if forloop.first %}
-<div class="jumbotron p-3 p-md-5 " style="background-image: url({{ post.featured_image.url}}); background-position: center; background-repeat: no-repeat;background-blend-mode: overlay;background-size:cover;">
+<div class="jumbotron p-3 p-md-5 " style="background-image: url({{ post.featured_image.url}});">
     <div class="col-md-8 px-0">
       <h1 class="display-4 ">{{ post.title }}</h1>
       <p class="lead my-3">{{ post.short_description | truncatewords:70 }}</p>
-      <p class="lead mb-0"><a href="{% url 'blogs' post.slug  %}" class="text-white font-weight-bold" style="text-align: center;">Continue reading...</a></p>
+      <p class="lead mb-0"><a href="{% url 'blogs' post.slug  %}" >Continue reading...</a></p>
     </div>
   </div>
   {% endif %}
@@ -74,14 +74,17 @@
       <div class="col-md-8 blog-main">
         {% for post in posts %}
         <div class="card border-0" >
+            <img src="{{ post.featured_image.url }}" alt="{{ post.title }}">
           <div class="card-body">
-            <h3><a href="{% url 'blogs' post.slug  %}" class="text-white">{{ post.title }}</a></h3>
-            <small class="mb-1 text-muted"> {{post.created_at | timesince }} ago | {{ post.author}} </small>
+           <h3> <a href="{% url 'blogs' post.slug  %}" class="text-dark">{{ post.title }}</a></h3>
+            <small class="mb-1 text-muted">{{ post.created_at | timesince }} ago | {{ post.author }}</small>
             <p class="card-text">{{ post.short_description | truncatewords:25 }}</p>
           </div>
-        </div >
+        </div>
         {% endfor %}
       </div>
+    
+  
       <!-- /.blog-main -->
 
       <aside class="col-md-4 blog-sidebar">
@@ -89,10 +92,13 @@
           <h4 class="font-italic">{{ about.about_heading }}</h4>
           <p class="mb-0">{{ about.about_description }}</p>
         </div>
+         </aside><!-- /.blog-sidebar -->
+    </div>
+    </main>
 
-          {% if social_links %}
+        {% if social_links %}
         <div class="p-3">
-          <h4 class="font-italic">Follow Us</h4>
+          <h4 class="font-italic"><p style=" font-family: 'Playfair Display', serif;font-size: 1.6rem;text-align: center;margin-bottom: 10px;font-weight: 800;background: linear-gradient(135deg, var(--white) 0%, var(--white) 100%);margin-top: 20px;">Follow Us</p></h4>
           <ol class="list-unstyled">
             {% for i in social_links %}
             <li><a href="{{ i.link }}" target="_blank">{{ i.platform }}</a></li>
@@ -100,11 +106,13 @@
           </ol>
         </div>
         {% endif %}
+  
       </aside><!-- /.blog-sidebar -->
 
     </div><!-- /.row -->
-   
 
   </main><!-- /.container -->
+
 </div>
- {% endblock %}
+
+{% endblock %}
