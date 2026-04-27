@@ -30,6 +30,7 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),
+    path('write/', views.editor_page, name='editor_page'),
     
     # Dashboards
     path('dashboard/', include('dashboards.urls')),

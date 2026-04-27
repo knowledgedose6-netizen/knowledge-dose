@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
 {% load crispy_forms_tags %}
 
@@ -10,4 +9,12 @@
     {{ form | crispy }}
     <button type="submit" class="btn btn-warning">Submit</button>
 </form>
+
+<!-- 🔥 NEW CODE START: Login suggestion for existing users -->
+<p style="text-align:center; margin-top:15px;">
+    Already have an account?
+    <a href="{% url 'login' %}" class="btn btn-sm btn-outline-secondary">Login</a>
+</p>
+<!-- 🔥 NEW CODE END -->
+
 {% endblock %}

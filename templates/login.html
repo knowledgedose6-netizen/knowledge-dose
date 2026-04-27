@@ -10,4 +10,12 @@
     {{ form | crispy }}
     <button type="submit" class="btn btn-warning">Login</button>
 </form>
+
+<!-- 🔥 NEW CODE START: Register suggestion for users -->
+<p style="text-align:center; margin-top:15px;">
+    If you don't have an account?
+    <a href="{% url 'register' %}" class="btn btn-sm btn-outline-warning">Register</a>
+</p>
+<!-- 🔥 NEW CODE END -->
+
 {% endblock %}
