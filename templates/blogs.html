@@ -4,93 +4,283 @@
 
 <!-- Page content with SPECIFIC CLASSES -->
 <div class="blog-detail-container mt-5">
+
     <div class="row">
+
         <div class="col-lg-8">
+
             <!-- Post content with specific class -->
+
             <article class="blog-detail-article">
+
                 <!-- Post header -->
+
                 <header class="mb-4">
+
                     <!-- Post title -->
-                    <h1 class="blog-detail-title">{{ single_blog.title }}</h1>
+
+                    <h1 class="blog-detail-title">
+
+                        {{ single_blog.title }}
+
+                    </h1>
+
                     <!-- Post meta content -->
-                    <div class="blog-detail-meta">Posted on {{ single_blog.created_at }} by {{ single_blog.author }}</div>
+
+                    <div class="blog-detail-meta">
+
+                        Posted on {{ single_blog.created_at }}
+
+                        by {{ single_blog.author }}
+
+                    </div>
+
                     <!-- Post category -->
-                    <a class="blog-detail-category" href="#!">{{ single_blog.category }}</a>
+
+                    <a class="blog-detail-category" href="#!">
+
+                        {{ single_blog.category }}
+
+                    </a>
+
                 </header>
-                <!-- Preview image -->
+
+
+                <!-- ✅ SAFE BLOG IMAGE -->
+
                 <figure class="mb-4">
-                    <img class="blog-detail-image img-fluid rounded" src="{{ single_blog.featured_image.url }}" alt="..." />
+
+                    <img
+
+                        class="blog-detail-image img-fluid rounded"
+
+                        src="{{ single_blog.image_url }}"
+
+                        alt="{{ single_blog.title }}"
+
+                    />
+
                 </figure>
+
+
                 <!-- Post content -->
+
                 <section class="mb-5">
-                    <p class="blog-detail-content mb-4">{{ single_blog.short_description }}</p>
-                    <p class="blog-detail-content mb-4">{{ single_blog.blog_body }}</p>
+
+                    <p class="blog-detail-content mb-4">
+
+                        {{ single_blog.short_description }}
+
+                    </p>
+
+                    <p class="blog-detail-content mb-4">
+
+                        {{ single_blog.blog_body|safe }}
+
+                    </p>
+
 
                     <!-- Comments Section -->
-                    <h4 class="blog-detail-comments-heading">Comments ({{ comment_count }})</h4>
-                    
+
+                    <h4 class="blog-detail-comments-heading">
+
+                        Comments ({{ comment_count }})
+
+                    </h4>
+
+
                     {% if comments %}
+
                         {% for comment in comments %}
-                            <!-- Comment Card - SPECIFIC CLASS -->
+
+                            <!-- Comment Card -->
+
                             <div class="blog-detail-comment-card">
+
                                 <div class="blog-detail-comment-body">
-                                    <p class="blog-detail-comment-text mb-0">{{ comment }}</p>
+
+                                    <p class="blog-detail-comment-text mb-0">
+
+                                        {{ comment }}
+
+                                    </p>
+
                                     <div class="blog-detail-comment-meta">
-                                        <small>By {{ comment.user }}</small>
-                                        <small>| {{ comment.created_at | timesince }} ago</small>
+
+                                        <small>
+
+                                            By {{ comment.user }}
+
+                                        </small>
+
+                                        <small>
+
+                                            | {{ comment.created_at|timesince }} ago
+
+                                        </small>
+
                                     </div>
+
                                 </div>
+
                             </div>
+
                         {% endfor %}
+
                     {% else %}
-                        <p class="blog-detail-no-comments">No comments yet.</p>
+
+                        <p class="blog-detail-no-comments">
+
+                            No comments yet.
+
+                        </p>
+
                     {% endif %}
-                    
+
+
                     <br>
-                    
+
+
                     <!-- Comment Form -->
+
                     <div class="blog-detail-form-group">
+
                         {% if user.is_authenticated %}
+
                         <form action="" method="POST">
+
                             {% csrf_token %}
+
                             <div class="blog-detail-form-group">
-                                <textarea name="comment" class="blog-detail-textarea" placeholder="Write your comment"></textarea>
-                                <input type="submit" value="Submit" class="blog-detail-submit-btn">
+
+                                <textarea
+
+                                    name="comment"
+
+                                    class="blog-detail-textarea"
+
+                                    placeholder="Write your comment"
+
+                                ></textarea>
+
+                                <input
+
+                                    type="submit"
+
+                                    value="Submit"
+
+                                    class="blog-detail-submit-btn"
+
+                                >
+
                             </div>
+
                         </form>
+
                         {% else %}
-                        <p class="blog-detail-login-prompt">Please <span><a href="{% url 'login' %}">login</a></span> to write a comment!</p>
+
+                        <p class="blog-detail-login-prompt">
+
+                            Please
+
+                            <span>
+
+                                <a href="{% url 'login' %}">
+
+                                    login
+
+                                </a>
+
+                            </span>
+
+                            to write a comment!
+
+                        </p>
+
                         {% endif %}
+
                     </div>
+
                 </section>
+
             </article>
+
         </div>
-        
+
+
         <!-- Side widgets -->
+
         <div class="col-lg-4">
+
             <!-- Categories widget -->
+
             <div class="blog-detail-sidebar-card">
-                <h4 class="blog-detail-sidebar-heading">Categories</h4>
+
+                <h4 class="blog-detail-sidebar-heading">
+
+                    Categories
+
+                </h4>
+
                 <ul class="blog-detail-category-list">
+
                     {% for cat in categories %}
-                        <li><a href="{% url 'posts_by_category' cat.id %}">{{ cat.category_name }}</a></li>
+
+                        <li>
+
+                            <a href="{% url 'posts_by_category' cat.id %}">
+
+                                {{ cat.category_name }}
+
+                            </a>
+
+                        </li>
+
                     {% endfor %}
+
                 </ul>
+
             </div>
-            
+
+
             <!-- Social Links widget -->
+
             {% if social_links %}
+
             <div class="blog-detail-sidebar-card">
-                <h4 class="blog-detail-sidebar-heading">Follow Us</h4>
+
+                <h4 class="blog-detail-sidebar-heading">
+
+                    Follow Us
+
+                </h4>
+
                 <ul class="blog-detail-social-list">
+
                     {% for i in social_links %}
-                        <li><a href="{{ i.link }}" target="_blank">{{ i.platform }}</a></li>
+
+                        <li>
+
+                            <a href="{{ i.link }}" target="_blank">
+
+                                {{ i.platform }}
+
+                            </a>
+
+                        </li>
+
                     {% endfor %}
+
                 </ul>
+
             </div>
+
             {% endif %}
+
         </div>
+
     </div>
+
 </div>
 
 {% endblock %}

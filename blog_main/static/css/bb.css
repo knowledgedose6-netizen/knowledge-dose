@@ -78,20 +78,7 @@ body {
     z-index: 1000;
 }
 
-.write-float-btn a {
-    background: #ff9800;
-    color: white;
-    padding: 18px;
-    border-radius: 50%;
-    font-size: 20px;
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
-    transition: 0.3s;
-}
 
-.write-float-btn a:hover {
-    background: #e68900;
-    transform: scale(1.1);
-}
 
 /* --------------------------------------------
    CONTAINER
@@ -2995,107 +2982,265 @@ body {
 
 
 
-/* ============================================
-   PROFESSIONAL FOOTER STYLING
-   ============================================ */
 
-.blog-footer {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%) !important;
-    color: #ffffff !important;
-    text-align: center !important;
-    padding: 2rem !important;
-    margin-top: 4rem !important;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
-    position: relative !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+
+
+
+
+
+/* ======================================
+            KNOWLEDGE DOSE FOOTER
+====================================== */
+
+.kd-footer{
+    background:linear-gradient(135deg,#071739,#0b1f4d,#102b63);
+    padding:45px 50px 15px;
+    margin-top:60px;
+    color:white;
+    position:relative;
+    overflow:hidden;
 }
 
-/* Gradient Border on Top */
-.blog-footer::before {
-    content: '' !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    height: 3px !important;
-    background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #667eea) !important;
-    background-size: 200% 100% !important;
-    animation: borderMove 3s linear infinite !important;
+/* glow effect */
+
+.kd-footer::before{
+    content:'';
+    position:absolute;
+    width:300px;
+    height:300px;
+    background:rgba(0,183,255,0.08);
+    border-radius:50%;
+    top:-100px;
+    right:-100px;
+    filter:blur(50px);
 }
 
-@keyframes borderMove {
-    0% { background-position: 0% 0%; }
-    100% { background-position: 200% 0%; }
+.kd-footer-container{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:35px;
+    position:relative;
+    z-index:2;
 }
 
-/* Footer Text */
-.blog-footer p {
-    margin: 0 !important;
-    font-size: 0.95rem !important;
-    letter-spacing: 0.5px !important;
-    color: var(--white)!important;
+/* =====================
+        LOGO
+===================== */
+
+.kd-logo-box{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:15px;
 }
 
-/* Add Heart Icon */
-.blog-footer p::before {
-    content: "❤️ " !important;
-    font-size: 1rem !important;
-    color: #e53e3e !important;
-    display: inline-block !important;
-    animation: heartBeat 1.5s ease infinite !important;
+.kd-logo-box img{
+    width:60px;
+    height:60px;
+    object-fit:contain;
 }
 
-@keyframes heartBeat {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
+.kd-logo-box h2{
+    font-size:28px;
+    margin:0;
+    color:#00c8ff;
+    font-weight:700;
 }
 
-/* Link Styling */
-.blog-footer a {
-    color: var(--gold-light) !important;
-    text-decoration: none !important;
-    font-weight: 600 !important;
-    transition: all 0.3s ease !important;
-    position: relative !important;
-    display: inline-block !important;
+.kd-logo-box span{
+    font-size:13px;
+    color:#b7d7ff;
 }
 
-.blog-footer a:hover {
-    color: var(--gold-dark) !important;
-    transform: translateY(-2px) !important;
+.kd-footer-about p{
+    font-size:14px;
+    line-height:1.8;
+    color:#d5e4ff;
+    max-width:320px;
 }
 
-/* Underline Animation on Hover */
-.blog-footer a::after {
-    content: '' !important;
-    position: absolute !important;
-    bottom: -4px !important;
-    left: 0 !important;
-    width: 0 !important;
-    height: 2px !important;
-    background: linear-gradient(90deg, var(--gold), var(--gold)) !important;
-    transition: width 0.3s ease !important;
+/* =====================
+        TITLES
+===================== */
+
+.kd-footer-links h3,
+.kd-footer-social h3{
+    font-size:20px;
+    margin-bottom:18px;
+    color:#00c8ff;
 }
 
-.blog-footer a:hover::after {
-    width: 100% !important;
+/* =====================
+        LINKS
+===================== */
+
+.kd-footer-links ul{
+    padding:0;
+    margin:0;
+    list-style:none;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .blog-footer {
-        padding: 1.5rem !important;
-        margin-top: 3rem !important;
+.kd-footer-links ul li{
+    margin-bottom:10px;
+}
+
+.kd-footer-links ul li a{
+    text-decoration:none;
+    color:#dce8ff;
+    font-size:14px;
+    transition:0.3s ease;
+    position:relative;
+}
+
+.kd-footer-links ul li a:hover{
+    color:#00c8ff;
+    padding-left:6px;
+}
+
+/* =====================
+      SOCIAL ICONS
+===================== */
+
+/* yha css lgani hai ab */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =====================
+        BOTTOM
+===================== */
+
+.kd-footer-bottom{
+    border-top:1px solid rgba(255,255,255,0.1);
+    margin-top:30px;
+    padding-top:15px;
+    text-align:center;
+}
+
+.kd-footer-bottom p{
+    margin:0;
+    font-size:13px;
+    color:#9bb7dd;
+}
+
+/* =====================
+       RESPONSIVE
+===================== */
+
+@media(max-width:992px){
+
+    .kd-footer-container{
+        grid-template-columns:1fr 1fr;
     }
-    
-    .blog-footer p {
-        font-size: 0.85rem !important;
+
+}
+
+@media(max-width:768px){
+
+    .kd-footer{
+        padding:40px 25px 15px;
     }
-    
-    .blog-footer p::before {
-        font-size: 0.9rem !important;
+
+    .kd-footer-container{
+        grid-template-columns:1fr;
+        gap:30px;
     }
-}   
+
+    .kd-logo-box h2{
+        font-size:24px;
+    }
+
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -10690,6 +10835,189 @@ h3.text-center::after {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ========================= */
+/* FLOAT WRAPPER */
+/* ========================= */
+
+.kdx-float-wrapper{
+    position: fixed;
+    right: 28px;
+    bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    z-index: 9999;
+}
+
+/* ========================= */
+/* ROUND BUTTON */
+/* ========================= */
+
+.kdx-round-btn{
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    background: var(--primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    position: relative;
+    transition: 0.4s ease;
+    overflow: visible;
+
+    color: white;
+
+    box-shadow:
+    0 12px 30px rgba(0,94,255,0.35),
+    inset 0 0 12px rgba(255,255,255,0.15);
+
+    animation: floatPulse 2s infinite;
+}
+
+/* ========================= */
+/* TEXT */
+/* ========================= */
+
+.kdx-round-btn span{
+    color: white;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    line-height: 1.2;
+}
+
+/* ========================= */
+/* HOVER */
+/* ========================= */
+
+.kdx-round-btn:hover{
+    transform: translateY(-8px) scale(1.08);
+
+    box-shadow:
+    0 18px 40px rgba(0,94,255,0.45),
+    inset 0 0 18px rgba(255,255,255,0.2);
+}
+
+/* ========================= */
+/* TOOLTIP */
+/* ========================= */
+
+.kd-tooltip{
+    position: absolute;
+
+    right: 115px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    background: var(--white);
+    color: var(--primary);
+
+    padding: 12px 18px;
+
+    border-radius: 14px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    opacity: 0;
+    visibility: hidden;
+
+    z-index: 99999;
+
+    transition: all 0.3s ease;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+/* TOOLTIP ARROW */
+
+.kd-tooltip::after{
+    content: '';
+
+    position: absolute;
+
+    right: -8px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border-width: 8px;
+    border-style: solid;
+
+    border-color:
+    transparent
+    transparent
+    transparent
+    white;
+}
+
+/* SHOW TOOLTIP */
+
+.kdx-round-btn:hover .kd-tooltip{
+    opacity: 1;
+    visibility: visible;
+    right: 125px;
+}
+
+/* ========================= */
+/* ANIMATION */
+/* ========================= */
+
+@keyframes floatPulse{
+
+    0%{
+        transform: scale(1);
+    }
+
+    50%{
+        transform: scale(1.05);
+    }
+
+    100%{
+        transform: scale(1);
+    }
+
+}
+
+/* ========================= */
+/* MOBILE */
+/* ========================= */
+
+@media(max-width:768px){
+
+    .kdx-round-btn{
+        width: 80px;
+        height: 80px;
+    }
+
+    .kdx-round-btn span{
+        font-size: 14px;
+    }
+
+}
 
 
 

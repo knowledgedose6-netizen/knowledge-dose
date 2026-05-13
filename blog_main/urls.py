@@ -1,37 +1,169 @@
 """
 URL configuration for blog_main project.
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/6.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
-from django.urls import  include, path
-from . import views
-from django.conf.urls.static import static
+
+from django.urls import (
+
+    path,
+
+    include
+
+)
+
 from django.conf import settings
+
+from django.conf.urls.static import static
+
+from . import views
+
 from blogs import views as BlogsView
 
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
-    path('category/', include('blogs.urls')),
-    path('blogs/<slug:slug>/', BlogsView.blogs, name='blogs'),
-    # Search endpoint
-    path('search/', BlogsView.search, name='search'),
-    path('register/', views.register, name='register'),
-    path('login/', views.login, name='login'),
-    path('logout/', views.logout, name='logout'),
-    path('write/', views.editor_page, name='editor_page'),
-    
-    # Dashboards
-    path('dashboard/', include('dashboards.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+    # ADMIN
+
+    path(
+
+        'admin/',
+
+        admin.site.urls
+
+    ),
+
+    # HOME
+
+    path(
+
+        '',
+
+        views.home,
+
+        name='home'
+
+    ),
+
+    # BLOG CATEGORIES
+
+    path(
+
+        'category/',
+
+        include('blogs.urls')
+
+    ),
+
+    # BLOG DETAILS
+
+    path(
+
+        'blogs/<slug:slug>/',
+
+        BlogsView.blogs,
+
+        name='blogs'
+
+    ),
+
+    # SEARCH
+
+    path(
+
+        'search/',
+
+        BlogsView.search,
+
+        name='search'
+
+    ),
+
+    # AUTHENTICATION
+
+    path(
+
+        'register/',
+
+        views.register,
+
+        name='register'
+
+    ),
+
+    path(
+
+        'login/',
+
+        views.login,
+
+        name='login'
+
+    ),
+
+    path(
+
+        'logout/',
+
+        views.logout,
+
+        name='logout'
+
+    ),
+
+    # SIMPLE EDITOR
+
+    path(
+
+        'write/',
+
+        views.editor_page,
+
+        name='editor_page'
+
+    ),
+
+    # CKEDITOR
+
+    path(
+
+        'ckeditor/',
+
+        include('ckeditor_uploader.urls')
+
+    ),
+
+    # CHATBOT
+
+    path(
+
+        'chatbot/',
+
+        include('chatbot.urls')
+
+    ),
+
+    # DASHBOARD
+
+    path(
+
+        'dashboard/',
+
+        include('dashboards.urls')
+
+    ),
+
+]
+
+
+# MEDIA FILES
+
+if settings.DEBUG:
+
+    urlpatterns += static(
+
+        settings.MEDIA_URL,
+
+        document_root=settings.MEDIA_ROOT
+
+    )
