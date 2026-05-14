@@ -33,7 +33,7 @@
                 <div class="card-image-wrapper">
                     <!-- 🔥 FIX: safe image -->
                     <img src="{% if post.featured_image %}{{ post.featured_image.url }}{% else %}{% static 'images/default.jpg' %}{% endif %}" 
-                         alt="{{ post.title }}" class="post-image">
+                         alt="{{ post.title |truncatewords:15}}" class="post-image">
                     <div class="image-overlay"></div>
                 </div>
                 <div class="post-content">
@@ -81,17 +81,17 @@
 
           <!-- 🔥 FIX: safe image -->
           <img src="{% if post.featured_image %}{{ post.featured_image.url }}{% else %}{% static 'images/default.jpg' %}{% endif %}" 
-               alt="{{ post.title }}">
+               alt="{{ post.title|truncatewords:25 }}">
 
         <div class="card-body">
           <h3>
-            <a href="{% url 'blogs' post.slug  %}" class="text-dark">{{ post.title }}</a>
+            <a href="{% url 'blogs' post.slug  %}" class="text-dark">{{ post.title |truncatewords:40 }}</a>
           </h3>
           <small class="mb-1 text-muted">
             {{ post.created_at | timesince }} ago | {{ post.author }}
           </small>
           <p class="card-text">
-            {{ post.short_description | truncatewords:25 }}
+            {{ post.short_description |truncatewords:25 }}
           </p>
         </div>
       </div>

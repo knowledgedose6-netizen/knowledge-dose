@@ -85,8 +85,8 @@ body {
 --------------------------------------------- */
 .container {
     max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 20px;
+    margin: 0 ;
+    padding: 0;
     width: 100%;
     flex: 1 0 auto;
     overflow-x: hidden;
@@ -98,7 +98,7 @@ body {
 .blog-header {
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
     padding: 18px 0;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     box-shadow: var(--shadow-lg);
     position: sticky;
     top: 0;
@@ -193,9 +193,9 @@ body {
 
 /* Logo Text */
 .blog-header-logo p {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    font-weight: 800;
+    font-family:Bodoni MT Black;
+    font-size: 1.9rem;
+    font-weight: 900;
     background: linear-gradient(135deg, var(--white) 0%, var(--white) 100%);
     -webkit-background-clip: text;
     background-clip: text;
@@ -207,17 +207,8 @@ body {
 .blog-header-logo:hover p {
     letter-spacing: 1.5px;
 }
-.blog-header-logo p{
-    animation: backgroundZoom 0.5s ease-in-out infinite alternate;
-}
-@keyframes backgroundZoom {
-    0% {
-        transform: scale(5.0);
-    }
-    100% {
-        transform: scale(0.9);
-    }
-}
+
+
 
 .blog-header-logo:hover p {
     letter-spacing: 1.5px;
@@ -716,7 +707,7 @@ body {
     padding: 5px 0;
     margin: 0;
     width: fit-content;
-    animation: infiniteScroll 10s linear infinite;
+    animation: infiniteScroll 15s linear infinite;
 }
 
 /* Pause on hover */
@@ -861,8 +852,10 @@ body {
 --------------------------------------------- */
 .jumbotron {
     position: relative;
-    padding: 100px 60px;
+    padding: 100px 90px;
     margin-bottom: 50px;
+    margin-left: 80px;
+    margin-right: 80px;
     background-size: cover !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
@@ -871,6 +864,7 @@ body {
     isolation: isolate;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: var(--shadow-lg);
+
 }
 
 /* Hover effect on jumbotron */
@@ -905,29 +899,13 @@ body {
         135deg,
         rgba(1, 11, 39, 0.9) 0%,
         rgba(1, 11, 39, 0.7) 50%,
-        rgba(1, 11, 39, 0.9) 100%
+        rgba(1, 11, 39, 0.9) 100%,
     );
 }
 
-/* --------------------------------------------
-   ZOOM ANIMATION ON BACKGROUND IMAGE
---------------------------------------------- */
-@keyframes backgroundZoom {
-    0% {
-        transform: scale(0.9);
-    }
-    100% {
-        transform: scale(0.8);
-    }
-}
 
-.jumbotron {
-    animation: backgroundZoom 1s ease-in-out infinite alternate;
-}
 
-.jumbotron:hover {
-    animation-play-state: paused;
-}
+
 
 /* --------------------------------------------
    CONTENT CONTAINER
@@ -1404,7 +1382,7 @@ body {
     font-size: 1.8rem;
     font-weight: 800;
     font-family: 'Playfair Display', serif;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    background: linear-gradient(135deg, var(--white) 0%, var(--white) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -1451,7 +1429,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 5px;
+    height: 2px;
     background: linear-gradient(90deg, var(--gold), var(--accent), var(--primary), var(--gold));
     transform: scaleX(0);
     transition: transform 0.5s ease;
@@ -1507,7 +1485,7 @@ body {
 .post-content {
     padding: 25px;
     position: relative;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--white) 100%);
+    background: linear-gradient(135deg, var(--gray-400) 0%, var(--gray-400) 100%);
 }
 
 /* --------------------------------------------
@@ -1542,7 +1520,7 @@ body {
 .post-read-time {
     font-size: 0.7rem;
     font-weight: 500;
-    color: var(--gray-500);
+    color: var(--gold);
     display: flex;
     align-items: center;
     gap: 5px;
@@ -1565,7 +1543,7 @@ body {
 }
 
 .post-title a {
-    color: var(--primary) !important;
+    color: var(--white) !important;
     text-decoration: none;
     transition: all 0.3s ease;
     background: linear-gradient(135deg, var(--primary), var(--accent));
@@ -1603,7 +1581,7 @@ body {
    POST EXCERPT
 --------------------------------------------- */
 .post-excerpt {
-    color: var(--gray-600);
+    color: var(--primary-dark);
     font-size: 0.9rem;
     line-height: 1.6;
     margin-bottom: 20px;
@@ -10872,10 +10850,10 @@ h3.text-center::after {
 /* ========================= */
 
 .kdx-round-btn{
-    width: 95px;
-    height: 95px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
-    background: var(--primary);
+    background: var(--gold-light);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10891,7 +10869,7 @@ h3.text-center::after {
     0 12px 30px rgba(0,94,255,0.35),
     inset 0 0 12px rgba(255,255,255,0.15);
 
-    animation: floatPulse 2s infinite;
+    animation: floatPulse 1s infinite;
 }
 
 /* ========================= */
@@ -10899,7 +10877,7 @@ h3.text-center::after {
 /* ========================= */
 
 .kdx-round-btn span{
-    color: white;
+    color: var(--white);
     font-size: 17px;
     font-weight: 700;
     letter-spacing: 0.4px;
@@ -11018,6 +10996,73 @@ h3.text-center::after {
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===== FULL WIDTH FIX WITHOUT DISTURBING OTHER CODE ===== */
+
+html,
+body{
+    width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* Bootstrap Containers Fix */
+.container,
+.container-fluid,
+.container-sm,
+.container-md,
+.container-lg,
+.container-xl,
+.container-xxl{
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* Sections */
+section{
+    width: 100%;
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* Rows */
+.row{
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* Images & Videos Overflow Fix */
+img,
+video{
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Prevent accidental horizontal scroll */
+*{
+    box-sizing: border-box;
+}
+
 
 
 
