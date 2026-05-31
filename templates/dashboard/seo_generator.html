@@ -1,0 +1,72 @@
+{% extends 'dashboard/admin_base.html' %}
+
+{% block content %}
+
+<div class="kdose-page-header">
+
+    <h1>SEO Generator</h1>
+
+    <p>
+        Generate SEO Meta Tags
+    </p>
+
+</div>
+
+<div class="kdose-form-card">
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <div class="kdose-form-group">
+
+            <label>
+                Target Keyword
+            </label>
+
+            <input
+                type="text"
+                name="keyword"
+                class="kdose-input"
+                placeholder="Enter keyword"
+            >
+
+        </div>
+
+        <button
+            type="submit"
+            class="kdose-btn">
+
+            Generate SEO
+
+        </button>
+
+    </form>
+
+</div>
+
+{% if meta_title %}
+
+<div class="kdose-form-card">
+
+    <h3>
+        Meta Title
+    </h3>
+
+    <textarea
+        class="kdose-textarea"
+        rows="3">{{ meta_title }}</textarea>
+
+    <h3>
+        Meta Description
+    </h3>
+
+    <textarea
+        class="kdose-textarea"
+        rows="6">{{ meta_description }}</textarea>
+
+</div>
+
+{% endif %}
+
+{% endblock %}

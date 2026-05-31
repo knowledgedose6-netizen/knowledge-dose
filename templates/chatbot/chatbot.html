@@ -1,385 +1,861 @@
 {% load static %}
-
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-    content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>KD AI Assistant</title>
 
     <!-- FONT AWESOME -->
 
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    >
 
-    <!-- CSS -->
+    <!-- CHATBOT CSS -->
 
-    <link rel="stylesheet"
-    href="{% static 'chatbot/css/chatbot.css' %}">
+    <link
+        rel="stylesheet"
+        href="{% static 'chatbot/css/chatbot.css' %}"
+    >
 
 </head>
 
-<body>
+<body class="kd-chatbot-page">
 
-<div class="kd-wrapper">
+    <!-- ========================================= -->
+    <!-- MAIN CHATBOT -->
+    <!-- ========================================= -->
 
-    <!-- SIDEBAR -->
+    <div class="kd-chatbot-container">
 
-    <aside class="kd-sidebar">
+        <!-- ========================================= -->
+        <!-- SIDEBAR -->
+        <!-- ========================================= -->
 
-        <!-- LOGO -->
+        <aside class="kd-sidebar">
 
-        <div class="kd-logo-box">
+            <!-- TOP -->
 
-            <img src="{% static 'chatbot/images/log.png' %}"
-            class="kd-avatar">
+            <div class="kd-sidebar-top">
 
-            <div>
+                <!-- LOGO -->
 
-                <h2>KD AI</h2>
+                <div class="kd-logo-box">
 
-                <p>
-                    KnowledgeDose AI Blogging Assistant
-                </p>
+                    <img
+                        src="{% static 'chatbot/images/log.png' %}"
+                        alt="KD AI"
+                        class="kd-logo"
+                    >
 
-            </div>
+                    <div>
 
-        </div>
+                        <h2 class="kd-logo-title">
+                            KD AI
+                        </h2>
 
-        <!-- FEATURES -->
+                        <p class="kd-logo-subtitle">
+                            KnowledgeDose Assistant
+                        </p>
 
-        <div class="kd-feature-box">
-
-            <h3>
-                🚀 AI Features
-            </h3>
-
-            <ul>
-
-                <li>AI Blog Generator</li>
-
-                <li>SEO Optimization</li>
-
-                <li>Grammar Fix</li>
-
-                <li>Humanize Content</li>
-
-                <li>AI Image Search</li>
-
-                <li>Voice Assistant</li>
-
-                <li>Draft Saving</li>
-
-            </ul>
-
-        </div>
-
-        <!-- QUICK ACTIONS -->
-
-        <div class="kd-quick-actions">
-
-            <h3>
-                ⚡ Quick Prompts
-            </h3>
-
-            <button class="quick-btn"
-            data-prompt="technology blog">
-
-                🚀 Technology Blog
-
-            </button>
-
-            <button class="quick-btn"
-            data-prompt="food blog">
-
-                🍔 Food Blog
-
-            </button>
-
-            <button class="quick-btn"
-            data-prompt="motivation blog">
-
-                💡 Motivation Blog
-
-            </button>
-
-            <button class="quick-btn"
-            data-prompt="nature blog">
-
-                🌿 Nature Blog
-
-            </button>
-
-            <button class="quick-btn"
-            data-prompt="business blog">
-
-                💼 Business Blog
-
-            </button>
-
-            <button class="quick-btn"
-            data-prompt="news blog">
-
-                📰 News Blog
-
-            </button>
-
-        </div>
-
-        <!-- CHAT HISTORY -->
-
-        <div class="chat-history-box">
-
-            <h3>
-                🕘 Recent Chats
-            </h3>
-
-            <div id="chatHistoryList">
-
-            </div>
-
-        </div>
-
-    </aside>
-
-    <!-- MAIN CHAT -->
-
-    <main class="kd-main-chat">
-
-        <!-- HEADER -->
-
-        <div class="kd-header">
-
-            <div class="kd-header-left">
-
-                <div class="online-dot"></div>
-
-                <div>
-
-                    <h2>
-                        KD AI Assistant
-                    </h2>
-
-                    <p>
-                        AI Blogging System Online
-                    </p>
+                    </div>
 
                 </div>
 
-            </div>
+                <!-- NEW CHAT -->
 
-            <div class="kd-header-right">
+                <button
+                    id="kdNewChatBtn"
+                    class="kd-new-chat-btn"
+                >
 
-                <button id="clearChatBtn">
+                    <i class="fa-solid fa-plus"></i>
 
-                    🗑 Clear Chat
+                    New Chat
 
                 </button>
 
             </div>
 
-        </div>
+            <!-- ========================================= -->
+            <!-- RECENT CHATS -->
+            <!-- ========================================= -->
 
-        <!-- CHAT AREA -->
+            <div class="kd-sidebar-section">
 
-        <div class="kd-chat-messages"
-        id="chatMessages">
-
-            <!-- WELCOME -->
-
-            <div class="ai-message welcome-message">
-
-                <h2>
-                    👋 Welcome To KnowledgeDose AI
-                </h2>
-
-                <p>
-
-                    Generate professional AI blogs with:
-
-                </p>
-
-                <ul>
-
-                    <li>SEO Optimization</li>
-
-                    <li>Grammar Analysis</li>
-
-                    <li>AI Tone Detection</li>
-
-                    <li>Human-like Writing</li>
-
-                    <li>Professional Blog Structure</li>
-
-                    <li>AI Image Integration</li>
-
-                </ul>
-
-                <p>
-
-                    Start by typing:
-                    <b>technology blog</b>
-
-                </p>
-
-            </div>
-
-            <!-- ✅ BLOG IMAGE -->
-
-            <div class="kd-blog-image-wrapper">
-
-                <img
-
-                    id="generatedBlogImage"
-
-                    class="kd-blog-generated-image"
-
-                    src=""
-
-                    alt="AI Blog Image"
-
+                <div
+                    class="kd-dropdown-header"
+                    id="kdHistoryToggle"
                 >
 
+                    <div class="kd-dropdown-title">
+
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+
+                        <span>
+                            Recent Chats
+                        </span>
+
+                    </div>
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </div>
+
+                <div
+                    id="kdRecentChats"
+                    class="kd-dropdown-content"
+                >
+
+                    <!-- JS HISTORY -->
+
+                </div>
+
+            </div>
+
+            <!-- ========================================= -->
+            <!-- QUICK PROMPTS -->
+            <!-- ========================================= -->
+
+            <div class="kd-sidebar-section">
+
+                <div
+                    class="kd-dropdown-header"
+                    id="kdPromptToggle"
+                >
+
+                    <div class="kd-dropdown-title">
+
+                        <i class="fa-solid fa-bolt"></i>
+
+                        <span>
+                            Quick Prompts
+                        </span>
+
+                    </div>
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </div>
+
+                <div
+                    class="kd-dropdown-content"
+                    id="kdPromptGrid"
+                >
+
+                    <button class="kd-prompt-btn">
+                        Sports
+                    </button>
+
+                    <button class="kd-prompt-btn">
+                        Travel
+                    </button>
+
+                    <button class="kd-prompt-btn">
+                        Health
+                    </button>
+
+                    <button class="kd-prompt-btn">
+                        General
+                    </button>
+
+                    <button class="kd-prompt-btn">
+                        Self Improvement
+                    </button>
+
+                    <button class="kd-prompt-btn">
+                        Environment
+                    </button>
+
+                    <button class="kd-prompt-btn">
+                        Nature
+                    </button>
+
+                    <button class="kd-prompt-btn">
+                        Motivation
+                    </button>
+
+                    <button class="kd-prompt-btn">
+                        Fashion
+                    </button>
+
+                    <button class="kd-prompt-btn">
+                        Food
+                    </button>
+
+                    <button class="kd-prompt-btn">
+                        Freelancing
+                    </button>
+
+                    <button class="kd-prompt-btn">
+                        Business
+                    </button>
+
+                    <button class="kd-prompt-btn">
+                        Internet
+                    </button>
+
+                    <button class="kd-prompt-btn">
+                        Education
+                    </button>
+
+                    <button class="kd-prompt-btn">
+                        News
+                    </button>
+
+                    <button class="kd-prompt-btn">
+                        Current Affairs
+                    </button>
+
+                    <button class="kd-prompt-btn">
+                        AI
+                    </button>
+
+                    <button class="kd-prompt-btn">
+                        Technology
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- ========================================= -->
+            <!-- AI FEATURES -->
+            <!-- ========================================= -->
+
+            <div class="kd-sidebar-section">
+
+                <div class="kd-feature-box">
+
+                    <h3>
+                        AI Features
+                    </h3>
+
+                    <div class="kd-feature-grid">
+
+                        <div class="kd-feature-card">
+                            SEO Optimization
+                        </div>
+
+                        <div class="kd-feature-card">
+                            Grammar Correction
+                        </div>
+
+                        <div class="kd-feature-card">
+                            Humanized Content
+                        </div>
+
+                        <div class="kd-feature-card">
+                            Voice Assistant
+                        </div>
+
+                        <div class="kd-feature-card">
+                            YouTube Integration
+                        </div>
+
+                        <div class="kd-feature-card">
+                            Pexels Images
+                        </div>
+
+                        <div class="kd-feature-card">
+                            Trending Topics
+                        </div>
+
+                        <div class="kd-feature-card">
+                            AI Automation
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ========================================= -->
+            <!-- TRENDING BLOGS -->
+            <!-- ========================================= -->
+
+            <div class="kd-sidebar-section">
+
+                <div
+                    class="kd-dropdown-header"
+                    id="kdTrendingToggle"
+                >
+
+                    <div class="kd-dropdown-title">
+
+                        <i class="fa-solid fa-fire"></i>
+
+                        <span>
+                            Trending Blogs
+                        </span>
+
+                    </div>
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </div>
+
+                <div
+                    class="kd-dropdown-content"
+                    id="kdTrendingBlogs"
+                >
+
+                    <button class="kd-trending-btn">
+                        Best AI Tools
+                    </button>
+
+                    <button class="kd-trending-btn">
+                        Business Growth Strategies
+                    </button>
+
+                    <button class="kd-trending-btn">
+                        Technology News
+                    </button>
+
+                    <button class="kd-trending-btn">
+                        Future of AI
+                    </button>
+
+                    <button class="kd-trending-btn">
+                        Remote Freelancing Trends
+                    </button>
+
+                    <button class="kd-trending-btn">
+                        Productivity Hacks
+                    </button>
+
+                    <button class="kd-trending-btn">
+                        Nature & Mental Health
+                    </button>
+
+                    <button class="kd-trending-btn">
+                        Digital Marketing Trends
+                    </button>
+
+                    <button class="kd-trending-btn">
+                        Startup Growth
+                    </button>
+
+                    <button class="kd-trending-btn">
+                        AI Automation Systems
+                    </button>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+        <!-- ========================================= -->
+        <!-- MAIN AREA -->
+        <!-- ========================================= -->
+
+        <main class="kd-main-area">
+
+            <!-- ========================================= -->
+            <!-- TOP HEADER -->
+            <!-- ========================================= -->
+
+            <header class="kd-top-header">
+
+                <div class="kd-header-left">
+
+                    <div class="kd-online-dot"></div>
+
+                    <div>
+
+                        <h1>
+                            KD AI Assistant
+                        </h1>
+
+                        <p>
+                            KnowledgeDose Blogging Website
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <button
+                    id="kdClearChatBtn"
+                    class="kd-clear-btn"
+                >
+
+                    <i class="fa-solid fa-trash"></i>
+
+                    Clear Chat
+
+                </button>
+
+            </header>
+
+            <!-- ========================================= -->
+            <!-- OUTPUT AREA -->
+            <!-- ========================================= -->
+
+            <section
+                id="kdOutputArea"
+                class="kd-output-area"
+            >
+
+                <!-- HERO WELCOME -->
+
+                <div class="kd-welcome-screen">
+
+                    <div class="kd-welcome-hero">
+
+                        <div class="kd-welcome-image-box">
+
+                            <img
+                                src="{% static 'chatbot/images/log.png' %}"
+                                alt="KD AI"
+                                class="kd-welcome-logo"
+                            >
+
+                        </div>
+
+                        <div class="kd-welcome-text">
+
+                            <h1>
+                                Welcome To KD AI
+                            </h1>
+
+                            <p>
+                                Generate premium AI-powered blogs with professional formatting, YouTube integration, SEO optimization, smart images, and modern article layouts.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- FEATURES -->
+
+                    <div class="kd-welcome-features">
+
+                        <div class="kd-welcome-card">
+
+                            <i class="fa-solid fa-chart-line"></i>
+
+                            <span>
+                                SEO Optimized
+                            </span>
+
+                        </div>
+
+                        <div class="kd-welcome-card">
+
+                            <i class="fa-solid fa-brain"></i>
+
+                            <span>
+                                Humanized AI
+                            </span>
+
+                        </div>
+
+                        <div class="kd-welcome-card">
+
+                            <i class="fa-solid fa-pen"></i>
+
+                            <span>
+                                Grammar Corrected
+                            </span>
+
+                        </div>
+
+                        <div class="kd-welcome-card">
+
+                            <i class="fa-solid fa-video"></i>
+
+                            <span>
+                                YouTube Blogs
+                            </span>
+
+                        </div>
+
+                        <div class="kd-welcome-card">
+
+                            <i class="fa-solid fa-image"></i>
+
+                            <span>
+                                HD Images
+                            </span>
+
+                        </div>
+
+                        <div class="kd-welcome-card">
+
+                            <i class="fa-solid fa-rocket"></i>
+
+                            <span>
+                                AI Automation
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <!-- AI INFO -->
+
+                    <div class="kd-ai-info-box">
+
+                        <div class="kd-ai-info-card">
+
+                            <h3>
+                                Professional AI Blogging
+                            </h3>
+
+                            <p>
+                                Generate premium Medium-style and Forbes-style blogs with modern typography, structured sections, FAQs, videos, and responsive layouts.
+                            </p>
+
+                        </div>
+
+                        <div class="kd-ai-info-card">
+
+                            <h3>
+                                Smart Media Integration
+                            </h3>
+
+                            <p>
+                                Auto-generated thumbnails, compressed images, YouTube previews, inline visuals, and responsive content sections.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- ========================================= -->
+            <!-- TYPING -->
+            <!-- ========================================= -->
+
+            <div
+                id="kdTypingContainer"
+                class="kd-typing-container"
+            >
+
+            </div>
+
+            <!-- ========================================= -->
+            <!-- INPUT AREA -->
+            <!-- ========================================= -->
+
+            <div class="kd-bottom-area">
+
+                <!-- FORM -->
+
+                <form
+                    id="kdChatForm"
+                    class="kd-chat-form"
+                >
+
+                    <!-- MIC -->
+
+                    <button
+                        type="button"
+                        id="kdVoiceBtn"
+                        class="kd-circle-btn"
+                    >
+
+                        <i class="fa-solid fa-microphone"></i>
+
+                    </button>
+
+                    <!-- INPUT -->
+
+                    <textarea
+                        id="kdPromptInput"
+                        placeholder="Ask KD AI to generate premium blogs..."
+                    ></textarea>
+
+                    <!-- SEND -->
+
+                    <button
+                        type="submit"
+                        id="kdSendBtn"
+                        class="kd-circle-btn"
+                    >
+
+                        <i class="fa-solid fa-paper-plane"></i>
+
+                    </button>
+
+                </form>
+
+                <!-- UPLOAD -->
+
+                <div class="kd-upload-wrapper">
+
+                    <label
+                        for="kdImageInput"
+                        class="kd-upload-btn"
+                    >
+
+                        <i class="fa-solid fa-image"></i>
+
+                        Upload Image
+
+                    </label>
+
+                    <input
+                        type="file"
+                        id="kdImageInput"
+                        hidden
+                    >
+
+                </div>
+
+                <!-- ACTION BUTTONS -->
+
+                <div class="kd-action-buttons">
+
+                    <button id="kdSaveBtn">
+                        Save
+                    </button>
+
+                    <button id="kdRewriteBtn">
+                        Rewrite
+                    </button>
+
+                    <button id="kdSeoBtn">
+                        SEO
+                    </button>
+
+                    <button id="kdGrammarBtn">
+                        Grammar
+                    </button>
+
+                    <button id="kdHumanizeBtn">
+                        Humanize
+                    </button>
+
+                    <button id="kdPreviewBtn">
+                        Preview
+                    </button>
+
+                    <button id="kdListenBtn">
+                        Listen
+                    </button>
+
+                    <button id="kdTrendingBtn">
+                        Trending
+                    </button>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <!-- ========================================= -->
+    <!-- PREVIEW MODAL -->
+    <!-- ========================================= -->
+
+    <div
+        id="kdPreviewModal"
+        class="kd-preview-modal kd-hidden"
+    >
+
+        <div class="kd-preview-content">
+
+            <div class="kd-preview-header">
+
+                <div>
+
+                    <h2>
+                        Blog Preview
+                    </h2>
+
+                    <p>
+                        KD AI Professional Rendering
+                    </p>
+
+                </div>
+
+                <button id="kdClosePreview">
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                </button>
+
+            </div>
+
+            <div
+                id="kdPreviewBody"
+                class="kd-preview-body"
+            >
+
             </div>
 
         </div>
 
-        <!-- TYPING -->
+    </div>
 
-        <div id="typingContainer"
-        class="typing-container hidden">
+    <!-- ========================================= -->
+    <!-- VIDEO MODAL -->
+    <!-- ========================================= -->
 
-            <div class="typing-dots">
+    <div
+        id="kdVideoModal"
+        class="kd-video-modal kd-hidden"
+    >
 
-                <span></span>
-                <span></span>
-                <span></span>
+        <div class="kd-video-modal-content">
 
-            </div>
+            <button
+                id="kdCloseVideoModal"
+                class="kd-close-video-btn"
+            >
 
-            <p>
-                KD AI is generating your blog...
-            </p>
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+            <iframe
+                id="kdVideoFrame"
+                src=""
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+            ></iframe>
 
         </div>
 
-        <!-- VOICE STATUS -->
+    </div>
 
-        <div id="voiceStatus"
-        class="voice-status hidden">
+    <!-- ========================================= -->
+    <!-- TOAST -->
+    <!-- ========================================= -->
 
-            🎤 Listening...
+    <div
+        id="kdToastContainer"
+        class="kd-toast-container"
+    >
 
-        </div>
+    </div>
 
-        <!-- AI SPEAKING -->
+    <!-- ========================================= -->
+    <!-- LOADING OVERLAY -->
+    <!-- ========================================= -->
 
-        <div id="aiSpeakingStatus"
-        class="voice-status hidden">
+    <div
+        id="kdLoadingOverlay"
+        class="kd-loading-overlay kd-hidden"
+    >
 
-            🔊 KD AI is speaking...
+        <div class="kd-loader"></div>
 
-        </div>
+        <h2>
+            KD AI is generating your premium blog...
+        </h2>
 
-        <!-- INPUT AREA -->
+        <p>
+            Please wait while we create professional AI-powered content with images, videos, SEO optimization, and smart formatting.
+        </p>
 
-        <div class="kd-input-area">
+    </div>
 
-            <!-- VOICE -->
+    <!-- ========================================= -->
+    <!-- JS FILES -->
+    <!-- ========================================= -->
 
-            <button id="voiceBtn"
-            class="voice-btn">
-
-                <i class="fa-solid fa-microphone"></i>
-
-            </button>
-
-            <!-- INPUT -->
-
-            <input
-            type="text"
-            id="userInput"
-            placeholder="Ask KD AI to generate blogs...">
-
-            <!-- SEND -->
-
-            <button id="sendBtn"
-            class="send-btn">
-
-                <i class="fa-solid fa-paper-plane"></i>
-
-            </button>
-
-        </div>
-
-        <!-- IMAGE UPLOAD -->
-
-        <div class="image-upload-box">
-
-            <input type="file"
-            id="customImageInput">
-
-        </div>
-
-        <!-- ACTION BUTTONS -->
-
-        <div class="kd-action-buttons">
-
-            <button id="saveDraftBtn">
-
-                💾 Save Draft
-
-            </button>
-
-            <button id="rewriteBtn">
-
-                ✨ Rewrite
-
-            </button>
-
-            <button id="seoBtn">
-
-                🚀 SEO
-
-            </button>
-
-            <button id="grammarBtn">
-
-                📝 Grammar
-
-            </button>
-
-            <button id="humanizeBtn">
-
-                🤖 Humanize
-
-            </button>
-
-        </div>
-
-    </main>
-
-</div>
+    <!-- ========================================= -->
+<!-- UPDATED VIDEO PLAYER SCRIPT -->
+<!-- ========================================= -->
 
 <script>
 
-    const csrfToken = '{{ csrf_token }}';
+    function openKDVideo(videoUrl){
+
+        const modal =
+        document.getElementById(
+            "kdVideoModal"
+        );
+
+        const frame =
+        document.getElementById(
+            "kdVideoFrame"
+        );
+
+        if(!modal || !frame) return;
+
+        modal.classList.remove(
+            "kd-hidden"
+        );
+
+        frame.src =
+        videoUrl + "?autoplay=1";
+    }
+
+    function closeKDVideo(){
+
+        const modal =
+        document.getElementById(
+            "kdVideoModal"
+        );
+
+        const frame =
+        document.getElementById(
+            "kdVideoFrame"
+        );
+
+        if(!modal || !frame) return;
+
+        modal.classList.add(
+            "kd-hidden"
+        );
+
+        frame.src = "";
+    }
+
+    document
+    .getElementById(
+        "kdCloseVideoModal"
+    )
+    .addEventListener(
+        "click",
+        closeKDVideo
+    );
+
+    window.addEventListener(
+        "click",
+        function(e){
+
+            const modal =
+            document.getElementById(
+                "kdVideoModal"
+            );
+
+            if(e.target === modal){
+
+                closeKDVideo();
+            }
+        }
+    );
 
 </script>
+    <script src="{% static 'chatbot/js/chatbot.js' %}"></script>
 
-<script src="{% static 'chatbot/js/chatbot.js' %}"></script>
+    <script src="{% static 'chatbot/js/voice.js' %}"></script>
 
-<script src="{% static 'chatbot/js/voice.js' %}"></script>
+    <script src="{% static 'chatbot/js/typing.js' %}"></script>
 
-<script src="{% static 'chatbot/js/typing.js' %}"></script>
-
-<script src="{% static 'chatbot/js/grammar.js' %}"></script>
+    <script src="{% static 'chatbot/js/grammar.js' %}"></script>
 
 </body>
 

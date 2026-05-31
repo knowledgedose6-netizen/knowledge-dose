@@ -2,198 +2,219 @@
 
 {% block content %}
 
-<!-- Page content with SPECIFIC CLASSES -->
-<div class="blog-detail-container mt-5">
+<div class="kd-premium-blog-page">
 
-    <div class="row">
+    <div class="container">
 
-        <div class="col-lg-8">
+        <div class="row">
 
-            <!-- Post content with specific class -->
+            <!-- BLOG CONTENT -->
 
-            <article class="blog-detail-article">
+            <div class="col-lg-8">
 
-                <!-- Post header -->
+                <article class="kd-premium-blog-card">
 
-                <header class="mb-4">
+                    <!-- CATEGORY -->
 
-                    <!-- Post title -->
+                    <div class="kd-blog-category">
 
-                    <h1 class="blog-detail-title">
+                        {{ single_blog.category }}
+
+                    </div>
+
+
+                    <!-- TITLE -->
+
+                    <h1 class="kd-blog-title">
 
                         {{ single_blog.title }}
 
                     </h1>
 
-                    <!-- Post meta content -->
 
-                    <div class="blog-detail-meta">
+                    <!-- META -->
 
-                        Posted on {{ single_blog.created_at }}
+                    <div class="kd-blog-meta">
 
-                        by {{ single_blog.author }}
+                        <span>
+                            👤 {{ single_blog.author }}
+                        </span>
+
+                        <span>
+                            📅 {{ single_blog.created_at }}
+                        </span>
 
                     </div>
 
-                    <!-- Post category -->
 
-                    <a class="blog-detail-category" href="#!">
+                    <!-- FEATURED IMAGE -->
 
-                        {{ single_blog.category }}
+                    <div class="kd-blog-main-image">
 
-                    </a>
+                        <img
 
-                </header>
+                            src="{{ single_blog.image_url }}"
 
+                            alt="{{ single_blog.title }}"
 
-                <!-- ✅ SAFE BLOG IMAGE -->
+                        >
 
-                <figure class="mb-4">
-
-                    <img
-
-                        class="blog-detail-image img-fluid rounded"
-
-                        src="{{ single_blog.image_url }}"
-
-                        alt="{{ single_blog.title }}"
-
-                    />
-
-                </figure>
+                    </div>
 
 
-                <!-- Post content -->
+                    <!-- SHORT DESCRIPTION -->
 
-                <section class="mb-5">
-
-                    <p class="blog-detail-content mb-4">
+                    <div class="kd-blog-short-description">
 
                         {{ single_blog.short_description }}
 
-                    </p>
+                    </div>
 
-                    <p class="blog-detail-content mb-4">
+
+                    <!-- BLOG BODY -->
+
+                    <div class="kd-blog-content">
 
                         {{ single_blog.blog_body|safe }}
 
-                    </p>
+                    </div>
 
 
-                    <!-- Comments Section -->
+                    <!-- TAGS -->
 
-                    <h4 class="blog-detail-comments-heading">
+                    <div class="kd-blog-tags">
 
-                        Comments ({{ comment_count }})
+                        <span>#AI</span>
+                        <span>#Technology</span>
+                        <span>#Trending</span>
 
-                    </h4>
+                    </div>
 
 
-                    {% if comments %}
+                    <!-- SHARE -->
 
-                        {% for comment in comments %}
+                    <div class="kd-blog-share">
 
-                            <!-- Comment Card -->
+                        <h4>
 
-                            <div class="blog-detail-comment-card">
+                            Share This Blog
 
-                                <div class="blog-detail-comment-body">
+                        </h4>
 
-                                    <p class="blog-detail-comment-text mb-0">
+                        <div class="kd-share-buttons">
 
-                                        {{ comment }}
+                            <a href="#">
+                                Facebook
+                            </a>
 
-                                    </p>
+                            <a href="#">
+                                Twitter
+                            </a>
 
-                                    <div class="blog-detail-comment-meta">
+                            <a href="#">
+                                LinkedIn
+                            </a>
 
-                                        <small>
+                        </div>
 
-                                            By {{ comment.user }}
+                    </div>
 
-                                        </small>
 
-                                        <small>
+                    <!-- COMMENTS -->
 
-                                            | {{ comment.created_at|timesince }} ago
+                    <div class="kd-comments-section">
 
-                                        </small>
+                        <h3>
 
-                                    </div>
+                            Comments ({{ comment_count }})
+
+                        </h3>
+
+
+                        {% if comments %}
+
+                            {% for comment in comments %}
+
+                            <div class="kd-comment-card">
+
+                                <div class="kd-comment-user">
+
+                                    👤 {{ comment.user }}
+
+                                </div>
+
+                                <div class="kd-comment-text">
+
+                                    {{ comment.comment }}
+
+                                </div>
+
+                                <div class="kd-comment-time">
+
+                                    {{ comment.created_at|timesince }} ago
 
                                 </div>
 
                             </div>
 
-                        {% endfor %}
+                            {% endfor %}
 
-                    {% else %}
+                        {% else %}
 
-                        <p class="blog-detail-no-comments">
+                            <p>
 
-                            No comments yet.
+                                No comments yet.
 
-                        </p>
+                            </p>
 
-                    {% endif %}
-
-
-                    <br>
+                        {% endif %}
 
 
-                    <!-- Comment Form -->
-
-                    <div class="blog-detail-form-group">
+                        <!-- COMMENT FORM -->
 
                         {% if user.is_authenticated %}
 
-                        <form action="" method="POST">
+                        <form method="POST">
 
                             {% csrf_token %}
 
-                            <div class="blog-detail-form-group">
+                            <textarea
 
-                                <textarea
+                                name="comment"
 
-                                    name="comment"
+                                class="kd-comment-textarea"
 
-                                    class="blog-detail-textarea"
+                                placeholder="Write your comment..."
 
-                                    placeholder="Write your comment"
+                            ></textarea>
 
-                                ></textarea>
+                            <button
 
-                                <input
+                                type="submit"
 
-                                    type="submit"
+                                class="kd-comment-btn"
 
-                                    value="Submit"
+                            >
 
-                                    class="blog-detail-submit-btn"
+                                Submit Comment
 
-                                >
-
-                            </div>
+                            </button>
 
                         </form>
 
                         {% else %}
 
-                        <p class="blog-detail-login-prompt">
+                        <p class="kd-login-message">
 
                             Please
 
-                            <span>
+                            <a href="{% url 'login' %}">
 
-                                <a href="{% url 'login' %}">
+                                login
 
-                                    login
+                            </a>
 
-                                </a>
-
-                            </span>
-
-                            to write a comment!
+                            to comment.
 
                         </p>
 
@@ -201,30 +222,28 @@
 
                     </div>
 
-                </section>
+                </article>
 
-            </article>
-
-        </div>
+            </div>
 
 
-        <!-- Side widgets -->
+            <!-- SIDEBAR -->
 
-        <div class="col-lg-4">
+            <div class="col-lg-4">
 
-            <!-- Categories widget -->
+                <!-- CATEGORIES -->
 
-            <div class="blog-detail-sidebar-card">
+                <div class="kd-sidebar-card">
 
-                <h4 class="blog-detail-sidebar-heading">
+                    <h4>
 
-                    Categories
+                        Categories
 
-                </h4>
+                    </h4>
 
-                <ul class="blog-detail-category-list">
+                    <ul>
 
-                    {% for cat in categories %}
+                        {% for cat in categories %}
 
                         <li>
 
@@ -236,32 +255,38 @@
 
                         </li>
 
-                    {% endfor %}
+                        {% endfor %}
 
-                </ul>
+                    </ul>
 
-            </div>
+                </div>
 
 
-            <!-- Social Links widget -->
+                <!-- SOCIAL LINKS -->
 
-            {% if social_links %}
+                {% if social_links %}
 
-            <div class="blog-detail-sidebar-card">
+                <div class="kd-sidebar-card">
 
-                <h4 class="blog-detail-sidebar-heading">
+                    <h4>
 
-                    Follow Us
+                        Follow Us
 
-                </h4>
+                    </h4>
 
-                <ul class="blog-detail-social-list">
+                    <ul>
 
-                    {% for i in social_links %}
+                        {% for i in social_links %}
 
                         <li>
 
-                            <a href="{{ i.link }}" target="_blank">
+                            <a
+
+                                href="{{ i.link }}"
+
+                                target="_blank"
+
+                            >
 
                                 {{ i.platform }}
 
@@ -269,13 +294,42 @@
 
                         </li>
 
-                    {% endfor %}
+                        {% endfor %}
 
-                </ul>
+                    </ul>
+
+                </div>
+
+                {% endif %}
+
+
+                <!-- TRENDING -->
+
+                <div class="kd-sidebar-card">
+
+                    <h4>
+
+                        Trending Topics
+
+                    </h4>
+
+                    <ul>
+
+                        <li>Latest AI Tools</li>
+
+                        <li>Business Growth</li>
+
+                        <li>Fashion Trends</li>
+
+                        <li>Travel Guides</li>
+
+                        <li>Technology News</li>
+
+                    </ul>
+
+                </div>
 
             </div>
-
-            {% endif %}
 
         </div>
 

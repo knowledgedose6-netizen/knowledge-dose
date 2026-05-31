@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="kd-dashboard">
+
+    {% include 'dashboard/sidebar.html' %}
+
+    <div class="kd-main">
+
+        <div class="kd-page-header">
+            <h1>Website Settings</h1>
+            <p>Manage your website settings</p>
+        </div>
+
+        <div class="kd-settings-card">
+
+            <form method="POST"
+                  enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+                {{ form|crispy }}
+
+                <button type="submit"
+                        class="kd-save-btn">
+
+                    Save Settings
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,21 +1,247 @@
-<div class="dashboard-sidebar-wrapper">
-    <div class="dashboard-sidebar-nav">
-        <a href="{% url 'dashboard' %}" class="dashboard-sidebar-link {% if '/dashboard/' == request.path %}dashboard-sidebar-active{% endif %}">
-            Dashboard
-        </a>
-        {% if perms.auth.view_user %}
-        <a href="{% url 'users' %}" class="dashboard-sidebar-link {% if '/users/' in request.path %}dashboard-sidebar-active{% endif %}">
-            Users
-        </a>
-        {% endif %}
-        <a href="{% url 'categories' %}" class="dashboard-sidebar-link {% if '/categories/' in request.path %}dashboard-sidebar-active{% endif %}">
-            Categories
-        </a>
-        <a href="{% url 'posts' %}" class="dashboard-sidebar-link {% if '/posts/' in request.path %}dashboard-sidebar-active{% endif %}">
-            Posts
-        </a>
-        <a href="#" class="dashboard-sidebar-link dashboard-sidebar-logout">
-            Logout
-        </a>
+
+<div class="kdose-sidebar">
+
+    <!-- LOGO -->
+
+    <div class="kdose-logo">
+
+        <h2>KnowledgeDose</h2>
+
+        <p>AI Blog CMS</p>
+
     </div>
+
+    <!-- MENU -->
+
+    <ul class="kdose-menu">
+
+        <!-- DASHBOARD -->
+
+        <li>
+            <a href="{% url 'dashboard' %}" class="active">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <!-- BLOG MANAGEMENT -->
+
+        <li class="kdose-dropdown">
+
+            <a href="#">
+                <i class="fa-solid fa-file-lines"></i>
+                <span>Blog Management</span>
+            </a>
+
+            <ul class="kdose-submenu">
+
+                <li>
+                    <a href="{% url 'posts' %}">
+                        All Posts
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'add_post' %}">
+                        Add Post
+                    </a>
+                </li>
+
+                <li>
+                   <a href="{% url 'draft_posts' %}">
+    Drafts
+</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'featured_posts' %}">
+    Featured
+</a>
+                </li>
+
+            </ul>
+
+        </li>
+
+        <!-- CATEGORIES -->
+
+        <li>
+            <a href="{% url 'categories' %}">
+                <i class="fa-solid fa-folder"></i>
+                <span>Categories</span>
+            </a>
+        </li>
+
+        <!-- COMMENTS -->
+
+        <li>
+            <a href="{% url 'comments' %}">
+                <i class="fa-solid fa-comments"></i>
+                <span>Comments</span>
+            </a>
+        </li>
+
+        <!-- AI TOOLS -->
+
+        <li class="kdose-dropdown">
+
+           <a href="{% url 'ai_tools' %}">
+                <i class="fa-solid fa-robot"></i>
+                <span>AI Tools</span>
+            </a>
+
+            <ul class="kdose-submenu">
+
+                <li>
+                    <a href="{% url 'ai_blog_generator' %}">
+                        Blog Generator
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'seo_generator' %}">
+                        SEO Generator
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'content_rewriter' %}">
+                        Rewriter
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'ai_assistant' %}">
+                        AI Assistant
+                    </a>
+                </li>
+
+            </ul>
+
+        </li>
+
+        <!-- MEDIA -->
+
+        <li>
+            <a href="#">
+                <i class="fa-solid fa-image"></i>
+                <span>Media Library</span>
+            </a>
+        </li>
+
+        <!-- ANALYTICS -->
+
+        <li>
+            <a href="#">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Analytics</span>
+            </a>
+        </li>
+
+        <!-- REPORTS -->
+
+        <li class="kdose-dropdown">
+
+            <a href="#">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Reports</span>
+            </a>
+
+            <ul class="kdose-submenu">
+
+                <li>
+                    <a href="{% url 'daily_report' %}">
+                        Daily Report
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'weekly_report' %}">
+                        Weekly Report
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'monthly_report' %}">
+                        Monthly Report
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'yearly_report' %}">
+                        
+                        Yearly Report
+                    </a>
+                </li>
+
+            </ul>
+
+        </li>
+
+        <!-- SEO -->
+
+        <li>
+            <a href="#">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <span>SEO Center</span>
+            </a>
+        </li>
+
+        <!-- USERS -->
+
+        <li>
+            <a href="{% url 'users' %}">
+                <i class="fa-solid fa-users"></i>
+                <span>Users</span>
+            </a>
+        </li>
+
+        <!-- NEWSLETTER -->
+
+        <li>
+            <a href="#">
+                <i class="fa-solid fa-envelope"></i>
+                <span>Newsletter</span>
+            </a>
+        </li>
+
+        <!-- NOTIFICATIONS -->
+
+        <li>
+            <a href="#">
+                <i class="fa-solid fa-bell"></i>
+                <span>Notifications</span>
+            </a>
+        </li>
+
+        <!-- SETTINGS -->
+
+        <li>
+           <a href="#">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+        </li>
+
+        <!-- SECURITY -->
+
+        <li>
+            <a href="#">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Security</span>
+            </a>
+        </li>
+
+        <!-- LOGOUT -->
+
+        <li>
+            <a href="{% url 'logout' %}">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+        </li>
+
+    </ul>
+
 </div>
+

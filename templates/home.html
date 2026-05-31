@@ -11,7 +11,21 @@
     <div class="col-md-8 px-0">
       <h1 class="display-4 ">{{ post.title }}</h1>
       <p class="lead my-3">{{ post.short_description | truncatewords:70 }}</p>
-      <p class="lead mb-0"><a href="{% url 'blogs' post.slug  %}" >Continue reading...</a></p>
+      <p class="lead mb-0">{% if post.is_ai_generated %}
+
+<a href="{% url 'ai_blog_detail' post.slug %}">
+
+{% else %}
+
+<a href="{% url 'blogs' post.slug %}">
+
+{% endif %}
+
+Continue reading...
+
+</a>
+
+</p>
     </div>
   </div>
   {% endif %}
@@ -42,7 +56,17 @@
                         <span class="post-read-time">{{ post.read_time|default:"6" }} min read</span>
                     </div>
                     <h3 class="post-title">
-                        <a href="{% url 'blogs' post.slug  %}" class="text-white">{{ post.title }}</a>
+                        {% if post.is_ai_generated %}
+
+<a href="{% url 'ai_blog_detail' post.slug %}" class="text-white">
+
+{% else %}
+
+<a href="{% url 'blogs' post.slug %}" class="text-white">
+
+{% endif %}
+{{ post.title }}
+</a>
                     </h3>
                     <p class="post-excerpt">{{ post.short_description|truncatewords:20 }}</p>
                     <div class="post-footer">
@@ -85,7 +109,17 @@
 
         <div class="card-body">
           <h3>
-            <a href="{% url 'blogs' post.slug  %}" class="text-dark">{{ post.title |truncatewords:40 }}</a>
+            {% if post.is_ai_generated %}
+
+<a href="{% url 'ai_blog_detail' post.slug %}" class="text-dark">
+
+{% else %}
+
+<a href="{% url 'blogs' post.slug %}" class="text-dark">
+
+{% endif %}
+{{ post.title |truncatewords:40 }}
+</a>
           </h3>
           <small class="mb-1 text-muted">
             {{ post.created_at | timesince }} ago | {{ post.author }}

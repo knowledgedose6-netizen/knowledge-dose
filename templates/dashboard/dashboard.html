@@ -1,35 +1,379 @@
-{% extends 'base.html' %}
+
+{% extends 'dashboard/admin_base.html' %}
 
 {% block content %}
 
-<div class="dashboard-main-row">
-    <!-- Left sidebar -->
-    <!-- load the sidebar here -->
-    {% include 'dashboard/sidebar.html' %}
+<!-- TOPBAR -->
 
-    <!-- Right side content -->
-    <div class="dashboard-main-content">
-        <span class="dashboard-welcome-user">Logged in as <b>{{ user }}</b></span>
-        <div class="dashboard-stats-wrapper">
-            <div class="dashboard-stat-item">
-                <div class="dashboard-stat-card">
-                    <div class="dashboard-stat-card-header">All Categories</div>
-                    <div class="dashboard-stat-card-body">
-                        <h5 class="dashboard-stat-number">{{ category_count }}</h5>
-                    </div>
-                </div>
-            </div>
+<div class="kdose-topbar">
 
-            <div class="dashboard-stat-item">
-                <div class="dashboard-stat-card">
-                    <div class="dashboard-stat-card-header">All Posts</div>
-                    <div class="dashboard-stat-card-body">
-                        <h5 class="dashboard-stat-number">{{ blogs_count }}</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="kdose-search">
+
+        <input type="text"
+               placeholder="Search posts, users, reports...">
+
     </div>
+
+    <div class="kdose-top-icons">
+
+        <div class="kdose-icon">
+            <i class="fa-solid fa-bell"></i>
+        </div>
+
+        <div class="kdose-icon">
+            <i class="fa-solid fa-envelope"></i>
+        </div>
+
+        <div class="kdose-user">
+
+            <img src="https://i.pravatar.cc/100">
+
+            <div>
+
+                <h4>{{ request.user.username }}</h4>
+
+                <p>Administrator</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
 
+
+<!-- PAGE HEADER -->
+
+<div class="kdose-heading">
+
+    <h1>Dashboard</h1>
+
+    <p>
+        Welcome back {{ request.user.username }}
+    </p>
+
+</div>
+
+
+<!-- MAIN STATS -->
+
+<div class="kdose-cards">
+
+    <div class="kdose-card">
+        <h3>Total Posts</h3>
+        <h1>{{ blogs_count }}</h1>
+    </div>
+
+    <div class="kdose-card">
+        <h3>Categories</h3>
+        <h1>{{ category_count }}</h1>
+    </div>
+
+    <div class="kdose-card">
+        <h3>Total Users</h3>
+        <h1>{{ users_count }}</h1>
+    </div>
+
+    <div class="kdose-card">
+        <h3>Comments</h3>
+        <h1>{{ comments_count }}</h1>
+    </div>
+
+</div>
+
+
+<!-- ANALYTICS -->
+
+<div class="kdose-analytics">
+
+    <div class="kdose-analytics-card">
+
+        <h3>Total Visitors</h3>
+
+        <h1>
+            {{ analytics.total_visitors|default:"0" }}
+        </h1>
+
+    </div>
+
+    <div class="kdose-analytics-card">
+
+        <h3>Mobile Users</h3>
+
+        <h1>
+            {{ analytics.mobile_users|default:"0" }}
+        </h1>
+
+    </div>
+
+    <div class="kdose-analytics-card">
+
+        <h3>Desktop Users</h3>
+
+        <h1>
+            {{ analytics.desktop_users|default:"0" }}
+        </h1>
+
+    </div>
+
+    <div class="kdose-analytics-card">
+
+        <h3>Organic Traffic</h3>
+
+        <h1>
+            {{ analytics.organic_traffic|default:"0" }}
+        </h1>
+
+    </div>
+
+</div>
+<div class="kdose-analytics">
+
+    <div class="kdose-analytics-card">
+
+        <h3>Published Posts</h3>
+
+        <h1>{{ published_posts }}</h1>
+
+    </div>
+
+    <div class="kdose-analytics-card">
+
+        <h3>Draft Posts</h3>
+
+        <h1>{{ draft_posts }}</h1>
+
+    </div>
+
+    <div class="kdose-analytics-card">
+
+        <h3>Featured Posts</h3>
+
+        <h1>{{ featured_posts }}</h1>
+
+    </div>
+
+    <div class="kdose-analytics-card">
+
+        <h3>AI Generated Posts</h3>
+
+        <h1>{{ ai_posts }}</h1>
+
+    </div>
+
+</div>
+
+
+
+
+
+<!-- CHARTS -->
+
+<div class="kdose-charts">
+
+    <div class="kdose-chart-card">
+
+        <h3>Website Traffic</h3>
+
+        <canvas id="trafficChart"></canvas>
+
+    </div>
+
+    <div class="kdose-side-card">
+
+        <h3>Traffic Sources</h3>
+
+        <canvas id="deviceChart"></canvas>
+
+    </div>
+
+</div>
+<div class="kdose-notification-card">
+
+    <h3>Latest Notifications</h3>
+
+    <ul>
+
+        <li>
+            Latest User:
+            {{ latest_user.username }}
+        </li>
+
+        <li>
+            Latest Comment:
+            {{ latest_comment.name }}
+        </li>
+
+        <li>
+            Latest Post:
+            {{ latest_post.title }}
+        </li>
+
+    </ul>
+
+</div>
+
+
+<!-- RECENT ACTIVITIES -->
+
+<div class="kdose-table-wrapper">
+
+    <table class="kdose-table">
+
+        <thead>
+
+            <tr>
+
+                <th>Activity</th>
+
+                <th>Status</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr>
+
+                <td>New Post Published</td>
+
+                <td>Completed</td>
+
+            </tr>
+
+            <tr>
+
+                <td>AI Blog Generated</td>
+
+                <td>Completed</td>
+
+            </tr>
+
+            <tr>
+
+                <td>New User Registered</td>
+
+                <td>Completed</td>
+
+            </tr>
+
+            <tr>
+
+                <td>Comment Approved</td>
+
+                <td>Completed</td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const trafficChart =
+document.getElementById(
+'trafficChart'
+);
+
+new Chart(trafficChart, {
+
+    type:'line',
+
+    data:{
+
+        labels:[
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun'
+        ],
+
+        datasets:[{
+
+            label:'Visitors',
+
+            data:[
+                1200,
+                1900,
+                3000,
+                5000,
+                4200,
+                6200
+            ],
+
+            borderColor:'#7c4dff',
+
+            backgroundColor:
+            'rgba(124,77,255,.2)',
+
+            fill:true,
+
+            tension:.4
+
+        }]
+
+    }
+
+});
+
+
+
+const deviceChart =
+document.getElementById(
+'deviceChart'
+);
+
+new Chart(deviceChart, {
+
+    type:'doughnut',
+
+    data:{
+
+        labels:[
+            'Desktop',
+            'Mobile',
+            'Tablet'
+        ],
+
+        datasets:[{
+
+            data:[
+
+                {{ analytics.desktop_users|default:0 }},
+
+                {{ analytics.mobile_users|default:0 }},
+
+                {{ analytics.tablet_users|default:0 }}
+
+            ],
+
+            backgroundColor:[
+
+                '#7c4dff',
+
+                '#2196f3',
+
+                '#00c853'
+
+            ]
+
+        }]
+
+    }
+
+});
+
+</script>
+
 {% endblock %}
+

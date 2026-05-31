@@ -1,36 +1,54 @@
-{% extends 'base.html' %}
+{% extends 'dashboard/admin_base.html' %}
 
 {% block content %}
-{% load crispy_forms_tags %}
 
-<div class="editcategory-main-container">
-    <!-- Left sidebar -->
-    <div class="editcategory-sidebar-wrapper">
-        {% include 'dashboard/sidebar.html' %}
+<div class="kdose-page-header">
+
+    <div>
+
+        <h1>Edit Category</h1>
+
+        <p>Update category information</p>
+
     </div>
 
-    <!-- Right side content -->
-    <div class="editcategory-form-container">
-        <div class="editcategory-card">
-            <div class="editcategory-card-header">
-                <h2 class="editcategory-card-title">Edit Category</h2>
-                <p class="editcategory-card-subtitle">Update category information</p>
-            </div>
-            
-            <form action="{% url 'edit_category' category.id %}" method="POST" class="editcategory-custom-form">
-                {% csrf_token %}
-                {{ form | crispy }}
-                <div class="editcategory-button-group">
-                    <button type="submit" class="editcategory-btn-submit">
-                        <i class="fa fa-save"></i> Update Category
-                    </button>
-                    <a href="{% url 'categories' %}" class="editcategory-btn-cancel">
-                        <i class="fa fa-arrow-left"></i> Back to Categories
-                    </a>
-                </div>
-            </form>
-        </div>
-    </div>
 </div>
+
+<form method="POST"
+      class="kdose-form">
+
+    {% csrf_token %}
+
+    <div class="kdose-form-group">
+
+        <label>
+            Category Name
+        </label>
+
+        {{ form.category_name }}
+
+    </div>
+
+    <div class="kdose-form-actions">
+
+        <button type="submit"
+                class="kdose-btn">
+
+            <i class="fa fa-save"></i>
+            Update Category
+
+        </button>
+
+        <a href="{% url 'categories' %}"
+           class="kdose-btn">
+
+            <i class="fa fa-arrow-left"></i>
+            Back
+
+        </a>
+
+    </div>
+
+</form>
 
 {% endblock %}

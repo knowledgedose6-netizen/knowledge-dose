@@ -1,3 +1,8 @@
+# =========================================================
+# KD AI ASSISTANT - urls.py
+# ULTRA PREMIUM URLS
+# =========================================================
+
 from django.urls import path
 
 from . import views
@@ -5,99 +10,115 @@ from . import views
 
 urlpatterns = [
 
+    # =====================================================
     # CHATBOT PAGE
+    # =====================================================
 
     path(
 
-        'kd-ai/',
+        "",
 
         views.chatbot_page,
 
-        name='chatbot_page'
+        name="chatbot"
 
     ),
 
+    # =====================================================
     # GENERATE BLOG
+    # =====================================================
 
     path(
 
-        'generate-blog/',
+        "generate-blog/",
 
         views.generate_blog,
 
-        name='generate_blog'
+        name="generate_blog"
 
     ),
 
-    # SAVE DRAFT
+    # =====================================================
+    # SAVE BLOG
+    # =====================================================
 
     path(
 
-        'save-draft/',
+        "save-blog/",
 
-        views.save_draft,
+        views.save_blog,
 
-        name='save_draft'
+        name="save_blog"
 
     ),
 
-    # REWRITE CONTENT
+    # =====================================================
+    # REWRITE BLOG
+    # =====================================================
 
     path(
 
-        'rewrite-blog/',
+        "rewrite-blog/",
 
         views.rewrite_blog,
 
-        name='rewrite_blog'
+        name="rewrite_blog"
 
     ),
 
-    # SEO IMPROVEMENT
+    # =====================================================
+    # SEO CHECK
+    # =====================================================
 
     path(
 
-        'seo-blog/',
+        "seo-check/",
 
-        views.seo_blog,
+        views.seo_check,
 
-        name='seo_blog'
+        name="seo_check"
 
     ),
 
-    # HUMANIZE CONTENT
+    # =====================================================
+    # GRAMMAR API
+    # =====================================================
 
     path(
 
-        'humanize-blog/',
+        "grammar-api/",
 
-        views.humanize_blog,
+        views.grammar_api,
 
-        name='humanize_blog'
+        name="grammar_api"
 
     ),
 
-    # GRAMMAR FIX
+    # =====================================================
+    # TRENDING BLOGS
+    # =====================================================
 
     path(
 
-        'grammar-blog/',
+        "trending-blogs/",
 
-        views.grammar_blog,
+        views.trending_blogs,
 
-        name='grammar_blog'
+        name="trending_blogs"
 
     ),
 
-    # CHAT HISTORY
+    # =====================================================
+    # YOUTUBE TEST
+    # =====================================================
 
     path(
 
-        'chat-history/',
+        "youtube-test/",
 
-        views.get_chat_history,
+        views.youtube_test,
 
-        name='chat_history'
+        name="youtube_test"
 
     ),
 

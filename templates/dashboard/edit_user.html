@@ -1,48 +1,71 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'dashboard/admin_base.html' %}
 {% load crispy_forms_tags %}
 
-<div class="edituser-main-container">
-    <!-- Left sidebar -->
-    <div class="edituser-sidebar-wrapper">
-        {% include 'dashboard/sidebar.html' %}
+{% block content %}
+
+<div class="kdose-page-header">
+
+    <div>
+
+        <h1>Edit User</h1>
+
+        <p>Update user information and permissions</p>
+
     </div>
 
-    <!-- Right side content -->
-    <div class="edituser-form-container">
-        {% if perms.auth.add_user %}
-        <div class="edituser-card">
-            <div class="edituser-card-header">
-                <h2 class="edituser-card-title">Edit User</h2>
-                <p class="edituser-card-subtitle">Update user information and permissions</p>
-            </div>
-            
-            <form action="#" method="POST" class="edituser-custom-form">
-                {% csrf_token %}
-                {{ form | crispy }}
-                <div class="edituser-button-group">
-                    <button type="submit" class="edituser-btn-submit">
-                        <i class="fa fa-save"></i> Update User
-                    </button>
-                    <a href="{% url 'users' %}" class="edituser-btn-cancel">
-                        <i class="fa fa-arrow-left"></i> Back to Users
-                    </a>
-                </div>
-            </form>
-        </div>
-        {% else %}
-        <div class="edituser-permission-denied">
-            <div class="permission-icon">
-                <i class="fa fa-lock"></i>
-            </div>
-            <h5>Access Denied</h5>
-            <p>You do not have permission to view this page</p>
-            <p class="permission-hint">Please contact administrator for access</p>
-            <a href="{% url 'dashboard' %}" class="permission-back-btn">Go to Dashboard</a>
-        </div>
-        {% endif %}
-    </div>
 </div>
+
+{% if perms.auth.change_user %}
+
+<div class="kdose-form-card">
+
+    <form method="POST"
+          class="kdose-form">
+
+        {% csrf_token %}
+
+        {{ form|crispy }}
+
+        <div class="kdose-form-actions">
+
+            <button type="submit"
+                    class="kdose-btn">
+
+                <i class="fa fa-save"></i>
+                Update User
+
+            </button>
+
+            <a href="{% url 'users' %}"
+               class="kdose-btn kdose-btn-secondary">
+
+                <i class="fa fa-arrow-left"></i>
+                Back to Users
+
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% else %}
+
+<div class="kdose-empty-state">
+
+    <i class="fa fa-lock"></i>
+
+    <h3>
+        Access Denied
+    </h3>
+
+    <p>
+        You do not have permission to edit users.
+    </p>
+
+</div>
+
+{% endif %}
 
 {% endblock %}

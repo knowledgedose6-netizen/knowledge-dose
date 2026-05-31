@@ -1,51 +1,89 @@
-{% extends 'base.html' %}
+{% extends 'dashboard/admin_base.html' %}
 
-{% block content %}
 {% load crispy_forms_tags %}
 
-<div class="adduser-main-container">
-    <!-- Left sidebar -->
-    <div class="adduser-sidebar-wrapper">
-        {% include 'dashboard/sidebar.html' %}
+{% block content %}
+
+<div class="kdose-page-header">
+
+
+<div>
+
+    <h1>Add New User</h1>
+
+    <p>Create a new user account</p>
+
+</div>
+
+
+</div>
+
+{% if perms.auth.add_user %}
+
+<div class="kdose-form-card">
+
+
+<form method="POST"
+      class="kdose-form">
+
+    {% csrf_token %}
+
+    <div class="kdose-form-grid">
+
+        {{ form|crispy }}
+
     </div>
 
-    <!-- Right side content -->
-    <div class="adduser-form-container">
-        {% if perms.auth.add_user %}
-        <div class="adduser-card">
-            <div class="adduser-card-header">
-                <div class="adduser-icon-circle">
-                    <i class="fa fa-user-plus"></i>
-                </div>
-                <h2 class="adduser-card-title">Add New User</h2>
-                <p class="adduser-card-subtitle">Fill in the details below to create a new user account</p>
-            </div>
-            
-            <form action="{% url 'add_user' %}" method="POST" class="adduser-custom-form">
-                {% csrf_token %}
-                {{ form | crispy }}
-                <div class="adduser-button-group">
-                    <button type="submit" class="adduser-btn-submit">
-                        <i class="fa fa-check-circle"></i> Create User
-                    </button>
-                    <a href="{% url 'users' %}" class="adduser-btn-cancel">
-                        <i class="fa fa-arrow-left"></i> Back to Users
-                    </a>
-                </div>
-            </form>
-        </div>
-        {% else %}
-        <div class="adduser-permission-denied">
-            <div class="permission-icon">
-                <i class="fa fa-lock"></i>
-            </div>
-            <h5>Access Denied</h5>
-            <p>You do not have permission to view this page</p>
-            <p class="permission-hint">Please contact administrator for access</p>
-            <a href="{% url 'dashboard' %}" class="permission-back-btn">Go to Dashboard</a>
-        </div>
-        {% endif %}
+    <div class="kdose-form-actions">
+
+        <button type="submit"
+                class="kdose-btn">
+
+            <i class="fa fa-user-plus"></i>
+            Create User
+
+        </button>
+
+        <a href="{% url 'users' %}"
+           class="kdose-btn kdose-btn-secondary">
+
+            <i class="fa fa-arrow-left"></i>
+            Back To Users
+
+        </a>
+
     </div>
+
+</form>
+
+
 </div>
+
+{% else %}
+
+<div class="kdose-permission-card">
+
+
+<i class="fa fa-lock"></i>
+
+<h3>
+    Access Denied
+</h3>
+
+<p>
+    You do not have permission to view this page.
+</p>
+
+<a href="{% url 'dashboard' %}"
+   class="kdose-btn">
+
+    Go To Dashboard
+
+</a>
+
+
+</div>
+
+{% endif %}
 
 {% endblock %}

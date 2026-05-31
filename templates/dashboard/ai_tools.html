@@ -1,0 +1,63 @@
+{% extends 'dashboard/admin_base.html' %}
+
+{% block content %}
+
+<div class="kdose-page-header">
+
+    <h1>AI Tools</h1>
+
+    <p>
+        AI powered content creation tools
+    </p>
+
+</div>
+
+<div class="kdose-ai-grid">
+
+    <a href="{% url 'ai_blog_generator' %}"
+       class="kdose-ai-card">
+
+        <i class="fa fa-robot"></i>
+
+        <h3>AI Blog Generator</h3>
+
+        <p>Create complete blog posts</p>
+
+    </a>
+
+    <a href="{% url 'seo_generator' %}"
+       class="kdose-ai-card">
+
+        <i class="fa fa-chart-line"></i>
+
+        <h3>SEO Generator</h3>
+
+        <p>Generate SEO meta content</p>
+
+    </a>
+
+    <a href="{% url 'content_rewriter' %}"
+       class="kdose-ai-card">
+
+        <i class="fa fa-pen"></i>
+
+        <h3>Content Rewriter</h3>
+
+        <p>Rewrite existing content</p>
+
+    </a>
+
+    <a href="{% url 'ai_assistant' %}"
+       class="kdose-ai-card">
+
+        <i class="fa fa-comments"></i>
+
+        <h3>AI Assistant</h3>
+
+        <p>Ask anything instantly</p>
+
+    </a>
+
+</div>
+
+{% endblock %}

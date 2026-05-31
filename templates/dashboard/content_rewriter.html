@@ -1,0 +1,64 @@
+{% extends 'dashboard/admin_base.html' %}
+
+{% block content %}
+
+<div class="kdose-page-header">
+
+    <h1>Content Rewriter</h1>
+
+    <p>
+        Rewrite and improve existing content
+    </p>
+
+</div>
+
+<div class="kdose-form-card">
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <div class="kdose-form-group">
+
+            <label>
+                Original Content
+            </label>
+
+            <textarea
+                name="content"
+                class="kdose-textarea"
+                rows="10"
+                placeholder="Paste your content here">
+            </textarea>
+
+        </div>
+
+        <button
+            type="submit"
+            class="kdose-btn">
+
+            Rewrite Content
+
+        </button>
+
+    </form>
+
+</div>
+
+{% if rewritten_content %}
+
+<div class="kdose-form-card">
+
+    <h3>
+        Rewritten Content
+    </h3>
+
+    <textarea
+        class="kdose-textarea"
+        rows="12">{{ rewritten_content }}</textarea>
+
+</div>
+
+{% endif %}
+
+{% endblock %}

@@ -33,6 +33,10 @@ from .forms import RegistrationForm
 
 def home(request):
 
+    # =========================================
+    # FEATURED POSTS
+    # =========================================
+
     featured_posts = Blog.objects.filter(
 
         is_featured=True,
@@ -41,13 +45,21 @@ def home(request):
 
     ).order_by('-updated_at')
 
+    # =========================================
+    # NORMAL POSTS
+    # =========================================
+
     posts = Blog.objects.filter(
 
         is_featured=False,
 
         status='Published'
 
-    )
+    ).order_by('-updated_at')
+
+    # =========================================
+    # ABOUT SECTION
+    # =========================================
 
     try:
 
@@ -56,6 +68,44 @@ def home(request):
     except About.DoesNotExist:
 
         about = None
+
+    # =========================================
+    # AI BLOGS SUPPORT
+    # =========================================
+
+    from chatbot.models import ChatHistory
+
+    ai_featured_posts = (
+
+        ChatHistory.objects.filter(
+
+            status='published',
+
+            is_featured=True
+
+        )
+
+        .order_by('-created_at')
+
+    )
+
+    ai_posts = (
+
+        ChatHistory.objects.filter(
+
+            status='published',
+
+            is_featured=False
+
+        )
+
+        .order_by('-created_at')
+
+    )
+
+    # =========================================
+    # CONTEXT
+    # =========================================
 
     context = {
 
@@ -67,6 +117,16 @@ def home(request):
 
         'about':
         about,
+
+        # =====================================
+        # AI BLOGS
+        # =====================================
+
+        'ai_featured_posts':
+        ai_featured_posts,
+
+        'ai_posts':
+        ai_posts,
 
     }
 
@@ -246,7 +306,9 @@ def editor_page(request):
             'featured_image'
         )
 
+        # =====================================
         # VALIDATION
+        # =====================================
 
         if not title or not blog_body:
 
@@ -268,7 +330,9 @@ def editor_page(request):
 
             )
 
+        # =====================================
         # CATEGORY
+        # =====================================
 
         try:
 
@@ -282,7 +346,9 @@ def editor_page(request):
 
             category = Category.objects.first()
 
+        # =====================================
         # UNIQUE SLUG
+        # =====================================
 
         base_slug = slugify(
             title
@@ -300,7 +366,9 @@ def editor_page(request):
 
             counter += 1
 
+        # =====================================
         # SAVE BLOG
+        # =====================================
 
         Blog.objects.create(
 
@@ -319,7 +387,11 @@ def editor_page(request):
 
             blog_body=blog_body,
 
-            status='Draft'
+            # =================================
+            # IMPORTANT FIX
+            # =================================
+
+            status='Published'
 
         )
 
@@ -335,7 +407,7 @@ def editor_page(request):
                 categories,
 
                 'success':
-                'Blog Saved as Draft ✅'
+                'Blog Published Successfully ✅'
 
             }
 

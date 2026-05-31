@@ -156,7 +156,7 @@ KnowledgeDose also allows users to write and publish their own blogs. In additio
 
         <!-- TEXT -->
 
-        <span><pre>  ✏️<br>Write<br></pre></span>
+        <span><pre> ✏️<br>Write<br></pre></span>
 
     </a>
 
@@ -182,7 +182,7 @@ KnowledgeDose also allows users to write and publish their own blogs. In additio
 
     {% if user.is_authenticated %}
 
-    <a href="{% url 'chatbot_page' %}" class="kdx-round-btn">
+    <a href="{% url 'chatbot' %}" class="kdx-round-btn">
 
         <!-- TOOLTIP -->
 
@@ -192,7 +192,12 @@ KnowledgeDose also allows users to write and publish their own blogs. In additio
 
         <!-- TEXT -->
 
-        <span><pre>  🤖<br>KD AI<br></pre></span>
+        <span style="background:none;">
+    <img src="{% static 'images/robort.png' %}" alt="kd AI"></a>
+
+    
+    
+</span>
 
     </a>
 

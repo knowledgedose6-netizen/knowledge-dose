@@ -1,0 +1,1443 @@
+
+/* ========================================
+   KNOWLEDGEDOSE PREMIUM ADMIN PANEL
+======================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+
+    --bg:#f4f7fc;          /* Main Background */
+
+    --sidebar:#ffffff;     /* Sidebar */
+
+    --card:#ffffff;        /* Cards */
+
+    --primary:#4f46e5;     /* Main Purple */
+
+    --primary-dark:#4338ca;
+
+    --success:#22c55e;
+
+    --warning:#f59e0b;
+
+    --danger:#ef4444;
+
+    --text:#1e293b;        /* Main Text */
+
+    --muted:#64748b;       /* Secondary Text */
+
+    --border:#e2e8f0;      /* Borders */
+
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    overflow-x:hidden;
+
+}
+
+/* ========================================
+   MAIN LAYOUT
+======================================== */
+
+.kdose-wrapper{
+
+    display:flex;
+    min-height:100vh;
+
+}
+
+.kdose-main{
+
+    flex:1;
+    padding:30px;
+    overflow-x:auto;
+
+}
+
+/* ========================================
+   SIDEBAR
+======================================== */
+
+.kdose-sidebar{
+
+    width:280px;
+    min-width:280px;
+
+    min-height:100vh;
+
+    background:#ffffff;
+
+    border-right:1px solid #e2e8f0;
+
+    padding:25px 18px;
+
+    position:sticky;
+    top:0;
+
+    overflow-y:auto;
+
+    box-shadow:0 0 25px rgba(0,0,0,.05);
+
+}
+.kdose-logo{
+
+    margin-bottom:35px;
+
+    padding-bottom:20px;
+
+    border-bottom:1px solid #e2e8f0;
+
+}
+
+.kdose-logo h2{
+
+    font-size:30px;
+    font-weight:700;
+
+    color:#1e293b;
+
+}
+
+.kdose-logo p{
+
+    color:#64748b;
+
+}
+
+.kdose-menu{
+
+    list-style:none;
+
+}
+
+.kdose-menu li{
+
+    margin-bottom:8px;
+
+}
+
+.kdose-menu li a{
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:14px 16px;
+
+    border-radius:14px;
+
+    text-decoration:none;
+
+    color:#475569;
+
+    font-weight:500;
+
+    transition:.3s;
+
+}
+
+.kdose-menu li a:hover{
+
+    background:#eef2ff;
+
+    color:#4f46e5;
+
+}
+
+.kdose-menu li a.active{
+
+    background:#4f46e5;
+
+    color:white;
+
+}
+
+.kdose-menu i{
+
+    width:20px;
+
+    color:inherit;
+
+}
+
+/* ========================================
+   TOPBAR
+======================================== */
+
+.kdose-topbar{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:30px;
+
+}
+
+.kdose-search input{
+
+    width:400px;
+
+    background:var(--card);
+
+    border:1px solid #e2e8f0;
+
+    outline:none;
+
+    color:#1e293b;
+
+    padding:14px;
+
+    border-radius:14px;
+
+}
+
+.kdose-top-icons{
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+}
+
+.kdose-icon{
+
+    width:45px;
+    height:45px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:12px;
+
+    background:var(--card);
+
+    cursor:pointer;
+
+}
+
+.kdose-user{
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+}
+
+.kdose-user img{
+
+    width:45px;
+    height:45px;
+
+    border-radius:50%;
+
+}
+
+/* ========================================
+   PAGE HEADER
+======================================== */
+
+.kdose-heading{
+
+    margin-bottom:30px;
+
+}
+
+.kdose-heading h1{
+
+    font-size:34px;
+    margin-bottom:5px;
+
+}
+
+.kdose-heading p{
+
+    color:var(--muted);
+
+}
+
+/* ========================================
+   STATS CARDS
+======================================== */
+
+.kdose-cards{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:20px;
+
+}
+
+.kdose-card{
+
+    background:var(--card);
+
+    padding:24px;
+
+    border-radius:20px;
+
+    border:1px solid var(--border);
+
+    transition:.3s;
+
+}
+
+.kdose-card:hover{
+
+    transform:translateY(-4px);
+
+}
+
+.kdose-card h3{
+
+    font-size:14px;
+    color:var(--muted);
+
+}
+
+.kdose-card h1{
+
+    margin-top:12px;
+
+    font-size:34px;
+
+}
+
+/* ========================================
+   ANALYTICS CARDS
+======================================== */
+
+.kdose-analytics{
+
+    margin-top:20px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:20px;
+
+}
+
+.kdose-analytics-card{
+
+    background:var(--card);
+
+    padding:20px;
+
+    border-radius:18px;
+
+    border:1px solid var(--border);
+
+}
+
+/* ========================================
+   CHARTS
+======================================== */
+
+.kdose-charts{
+
+    margin-top:30px;
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:20px;
+
+}
+
+.kdose-chart-card,
+.kdose-side-card{
+
+    background:var(--card);
+
+    padding:25px;
+
+    border-radius:20px;
+
+    border:1px solid var(--border);
+
+}
+
+/* ========================================
+   TABLES
+======================================== */
+
+.kdose-table-wrapper{
+
+    margin-top:30px;
+
+    background:var(--card);
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    border:1px solid var(--border);
+
+}
+
+.kdose-table{
+
+    width:100%;
+    border-collapse:collapse;
+
+}
+
+.kdose-table th{
+
+    background:#f8fafc;
+    color:#1e293b;
+
+    text-align:left;
+
+    padding:16px;
+
+}
+
+.kdose-table td{
+
+    padding:16px;
+
+}
+
+.kdose-table tr{
+
+    border-bottom:1px solid var(--border);
+
+}
+
+/* ========================================
+   BUTTONS
+======================================== */
+
+.kdose-btn{
+
+    border:none;
+
+    cursor:pointer;
+
+    color:#fff;
+
+    padding:12px 18px;
+
+    border-radius:12px;
+
+    background:linear-gradient(
+        90deg,
+        var(--primary),
+        var(--primary-dark)
+    );
+
+}
+
+/* ========================================
+   FORMS
+======================================== */
+
+.kdose-form{
+
+    background:#ffffff;
+
+    color: #1e293b;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    border:1px solid #e2e8f0;
+
+}
+
+.kdose-form input:not([type="checkbox"]):not([type="radio"]),
+.kdose-form textarea,
+.kdose-form select{
+
+    width:100%;
+
+    margin-top:10px;
+    margin-bottom:20px;
+
+    background:#ffffff !important;
+
+    border:1px solid #dbe2ea !important;
+
+    outline:none;
+
+    color:#1e293b !important;
+
+    padding:14px;
+
+    border-radius:12px;
+
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media(max-width:1200px){
+
+    .kdose-cards,
+    .kdose-analytics{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+}
+
+@media(max-width:900px){
+
+    .kdose-sidebar{
+
+        display:none;
+
+    }
+
+    .kdose-charts{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .kdose-topbar{
+
+        flex-direction:column;
+        gap:20px;
+
+    }
+
+    .kdose-search input{
+
+        width:100%;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .kdose-cards,
+    .kdose-analytics{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+
+
+
+.kdose-submenu{
+
+    list-style:none;
+
+    margin-left:30px;
+
+    margin-top:8px;
+
+}
+
+.kdose-submenu li{
+
+    margin-bottom:6px;
+
+}
+
+.kdose-submenu a{
+
+    padding:10px 14px !important;
+
+    font-size:13px;
+
+    color:#b8c0d4 !important;
+}
+
+
+
+
+
+
+.kd-table-tools{
+
+    display:flex;
+    gap:15px;
+
+    margin-bottom:20px;
+}
+
+.kd-table-tools input,
+.kd-table-tools select{
+
+    background:#101935;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    color:#fff;
+
+    padding:12px;
+
+    border-radius:12px;
+}
+
+.posts-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+}
+
+.kdose-success-badge{
+
+    background:#00c853;
+
+    color:white;
+
+    padding:6px 12px;
+
+    border-radius:30px;
+
+    font-size:12px;
+}
+
+.kdose-draft-badge{
+
+    background:#ff9800;
+
+    color:white;
+
+    padding:6px 12px;
+
+    border-radius:30px;
+
+    font-size:12px;
+}
+
+
+
+
+
+.kdose-form-group{
+
+    margin-bottom:25px;
+
+}
+
+.kdose-form-group label{
+
+    display:block;
+
+    margin-bottom:10px;
+
+    font-weight:600;
+
+}
+
+.kdose-form hr{
+
+    margin:30px 0;
+
+    border:none;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+.kdose-form h3{
+
+    margin-bottom:20px;
+
+}
+
+
+
+
+
+
+
+
+.kdose-input,
+.kdose-select,
+.kdose-textarea{
+
+    width:100%;
+
+    padding:14px 16px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:14px;
+
+    background:#ffffff;
+
+    color:#081028;
+
+    margin-top:8px;
+
+}
+
+.kdose-file{
+
+    width:100%;
+
+    padding:12px;
+
+    border-radius:14px;
+
+    background:wheat;
+
+    color:#081028;
+
+}
+
+.kdose-form-group{
+
+    margin-bottom:25px;
+
+}
+
+.kdose-form-group label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+}
+
+
+
+
+
+
+.kdose-card,
+.kdose-analytics-card{
+
+    background:#ffffff;
+
+    border:1px solid #e2e8f0;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    transition:.3s;
+}
+
+.kdose-card:hover,
+.kdose-analytics-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+    0 15px 35px rgba(
+        0,
+        0,
+        0,
+        .25
+    );
+
+}
+
+.kdose-card h1,
+.kdose-analytics-card h1{
+
+    margin-top:10px;
+
+    font-size:34px;
+
+    color:#1e293b;
+}
+
+.kdose-card h3,
+.kdose-analytics-card h3{
+
+    color:#9ca3af;
+
+    font-size:14px;
+
+}
+
+
+
+
+
+
+.kdose-action-buttons{
+    display:flex;
+    gap:10px;
+    align-items:center;
+    justify-content:center;
+}
+
+.kdose-edit-btn,
+.kdose-delete-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:10px 16px;
+    border-radius:10px;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:600;
+}
+
+
+
+
+
+/* =========================
+   ADD POST FORM
+========================= */
+
+.kdose-form{
+    background:#ffffff;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.kdose-form-group{
+    margin-bottom:25px;
+}
+
+.kdose-form-group label{
+    display:block;
+    margin-bottom:10px;
+    font-size:15px;
+    font-weight:600;
+    color:#1e293b;
+}
+
+.kdose-input,
+.kdose-select,
+.kdose-textarea,
+.kdose-file{
+    width:100%;
+    padding:14px 16px;
+    border:1px solid #dbe2ea;
+    border-radius:12px;
+    font-size:15px;
+    background:#fff;
+}
+
+.kdose-input:focus,
+.kdose-select:focus,
+.kdose-textarea:focus{
+    outline:none;
+    border-color:#4f46e5;
+}
+
+.kdose-textarea{
+    resize:vertical;
+    min-height:120px;
+}
+
+.kdose-btn{
+    background:#4f46e5;
+    color:#fff;
+    border:none;
+    padding:14px 24px;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.kdose-btn:hover{
+    background:#4338ca;
+}
+
+.django-ckeditor-widget{
+    width:100%;
+}
+
+.cke{
+    width:100% !important;
+}
+
+
+
+
+
+
+/* EDIT POST */
+
+.kdose-form-card{
+
+    background:#fff;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.kdose-form-actions{
+
+    display:flex;
+
+    gap:12px;
+
+    margin-top:25px;
+
+}
+
+.kdose-btn-secondary{
+
+    background:#e2e8f0;
+
+    color:#1e293b;
+
+    padding:14px 24px;
+
+    border-radius:12px;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+}
+
+
+
+
+
+.kdose-form-card{
+
+    background:#ffffff;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.kdose-form-actions{
+
+    display:flex;
+
+    gap:12px;
+
+    margin-top:25px;
+
+}
+
+.kdose-btn-secondary{
+
+    background:#e2e8f0;
+
+    color:#1e293b;
+
+    padding:14px 24px;
+
+    border-radius:12px;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+}
+
+
+
+
+/* =========================
+USERS MANAGEMENT
+========================= */
+
+.kdose-users-content{
+width:100%;
+padding:30px;
+}
+
+.kdose-users-heading{
+font-size:32px;
+font-weight:700;
+color:#1e293b;
+margin-bottom:20px;
+}
+
+.kdose-users-add-btn{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+padding:12px 22px;
+background:#4f46e5;
+color:#fff;
+border-radius:12px;
+text-decoration:none;
+font-weight:600;
+margin-bottom:25px;
+transition:.3s;
+}
+
+.kdose-users-add-btn:hover{
+     background:#4338ca;
+}
+
+.kdose-users-table-wrapper{
+background:#ffffff;
+border-radius:20px;
+overflow-x:auto;
+overflow-y: hidden;
+box-shadow:0 8px 30px rgba(0,0,0,.05);
+border:1px solid #e5e7eb;
+}
+
+.kdose-users-table{
+width:100%;
+min-width: 1300px;
+border-collapse:collapse;
+}
+
+.kdose-users-table thead{
+background:#f8fafc;
+}
+
+.kdose-users-table th{
+padding:18px;
+text-align:left;
+font-size:15px;
+font-weight:700;
+color:#0f172a;
+border-bottom:1px solid #e5e7eb;
+}
+
+.kdose-users-table td{
+padding:18px;
+color:#475569;
+border-bottom:1px solid #eef2f7;
+vertical-align:middle;
+}
+
+.kdose-users-row-item:hover
+
+.kdose-status-badge{
+display:inline-flex;
+align-items:center;
+gap:6px;
+padding:7px 14px;
+border-radius:50px;
+font-size:13px;
+font-weight:600;
+}
+
+.kdose-status-active{
+background:#dcfce7;
+color:#16a34a;
+}
+
+.kdose-status-inactive{
+background:#fee2e2;
+color:#dc2626;
+}
+
+.kdose-users-actions{
+display:flex;
+gap:10px;
+}
+
+.kdose-users-edit-btn,
+.kdose-users-delete-btn{
+width:42px;
+height:42px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:10px;
+color:#0cc728;
+text-decoration:none;
+transition:.3s;
+}
+
+.kdose-users-edit-btn{
+background:#4f46e5;
+}
+
+.kdose-users-edit-btn:hover
+
+.kdose-users-delete-btn{
+background:#ef4444;
+}
+
+.kdose-users-delete-btn:hover
+
+.kdose-users-no-permission{
+background:#fff;
+padding:50px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 8px 30px rgba(0,0,0,.05);
+}
+
+.kdose-users-no-permission i{
+font-size:60px;
+color:#ef4444;
+margin-bottom:15px;
+}
+
+.kdose-users-no-permission h5{
+font-size:24px;
+color:#1e293b;
+margin-bottom:10px;
+}
+
+.kdose-users-no-permission p{
+color:#64748b;
+}
+
+/* Responsive */
+
+@media(max-width:991px){
+
+
+.kdose-users-table-wrapper{
+    overflow-x:auto;
+}
+
+.kdose-users-table{
+    min-width:1000px;
+}
+
+
+}
+
+
+
+
+
+
+
+
+/* ALL DASHBOARD INPUTS LIGHT THEME */
+
+input,
+textarea,
+select,
+.form-control,
+.textinput,
+.emailinput,
+.passwordinput{
+
+    background:#ffffff !important;
+    color:#1e293b !important;
+    border:1px solid #dbe2ea !important;
+
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+.form-control:focus{
+
+    background:#ffffff !important;
+    color:#1e293b !important;
+    border-color:#4f46e5 !important;
+    box-shadow:0 0 0 4px rgba(79,70,229,.12);
+
+}
+
+
+
+
+
+
+/* =====================================
+   CRISPY FORMS CHECKBOX FIX
+===================================== */
+
+input[type="checkbox"]{
+
+    width:18px !important;
+    height:18px !important;
+
+    margin:0 !important;
+
+    display:inline-block !important;
+
+    vertical-align:middle;
+
+    accent-color:#4f46e5;
+
+}
+
+/* Crispy Forms */
+
+.form-check,
+.checkbox{
+
+    display:flex !important;
+
+    align-items:center !important;
+
+    gap:10px !important;
+
+    margin:15px 0 !important;
+
+}
+
+.form-check input[type="checkbox"],
+.checkbox input[type="checkbox"]{
+
+    flex:none !important;
+
+    width:18px !important;
+
+    height:18px !important;
+
+}
+
+.form-check label,
+.checkbox label{
+
+    margin:0 !important;
+
+    display:inline-block !important;
+
+    font-weight:500;
+
+    color:#1e293b;
+
+}
+
+
+
+
+/* ==========================
+   EDIT USER
+========================== */
+
+.kdose-form-actions{
+
+    display:flex;
+    gap:15px;
+    margin-top:25px;
+    flex-wrap:wrap;
+
+}
+
+.kdose-btn-secondary{
+
+    background:#eef2ff !important;
+    color:#4f46e5 !important;
+    border:1px solid #c7d2fe !important;
+
+}
+
+.kdose-empty-state{
+
+    background:#fff;
+    border-radius:20px;
+    padding:50px;
+    text-align:center;
+    box-shadow:0 10px 40px rgba(0,0,0,.05);
+
+}
+
+.kdose-empty-state i{
+
+    font-size:50px;
+    color:#ef4444;
+    margin-bottom:15px;
+
+}
+
+
+
+
+
+
+
+
+
+.kdose-post-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.kdose-post-edit-btn,
+.kdose-post-delete-btn{
+    width:44px;
+    height:44px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    color:#fff;
+    font-size:16px;
+    transition:0.3s ease;
+}
+
+.kdose-post-edit-btn{
+    background:#4f46e5;
+}
+
+.kdose-post-delete-btn{
+    background:#ef4444;
+}
+
+.kdose-post-edit-btn:hover,
+.kdose-post-delete-btn:hover{
+    transform:translateY(-2px);
+}
+
+
+
+
+
+.kd-category-tools{
+    margin:20px 0;
+}
+
+.kd-category-tools form{
+    display:flex;
+    gap:12px;
+    align-items:center;
+}
+
+.kd-category-tools input{
+    width:320px;
+    height:50px;
+    padding:0 18px;
+    border:1px solid #dbe2ea;
+    border-radius:12px;
+    background:#fff;
+    outline:none;
+}
+
+
+
+
+
+
+
+.kdose-ai-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
+    gap:25px;
+
+}
+
+.kdose-ai-card{
+
+    background:#fff;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    text-decoration:none;
+
+    text-align:center;
+
+    color:#1e293b;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+
+    transition:.3s;
+
+}
+
+.kdose-ai-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.kdose-ai-card i{
+
+    font-size:45px;
+
+    color:#4f46e5;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.kdose-form-card{
+
+    background:#fff;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    margin-bottom:20px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+
+}
+
+
+
+
+
+
+
+
+
+
+.kdose-notification-card{
+    background:#fff;
+    padding:25px;
+    border-radius:20px;
+    margin:25px 0;
+    box-shadow:0 4px 15px rgba(0,0,0,.05);
+}
+
+.kdose-notification-card h3{
+    margin-bottom:15px;
+}
+
+.kdose-notification-card ul{
+    list-style:none;
+    padding:0;
+}
+
+.kdose-notification-card li{
+    padding:12px 0;
+    border-bottom:1px solid #eee;
+}
+
+
+
+
+
+

@@ -107,6 +107,11 @@ class Blog(models.Model):
     is_featured = models.BooleanField(
         default=False
     )
+    
+    is_ai_generated = models.BooleanField(
+    default=False
+    )
+    
 
     created_at = models.DateTimeField(
         auto_now_add=True

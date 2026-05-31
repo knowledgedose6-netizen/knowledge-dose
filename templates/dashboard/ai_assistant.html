@@ -1,0 +1,59 @@
+{% extends 'dashboard/admin_base.html' %}
+
+{% block content %}
+
+<div class="kdose-page-header">
+
+    <h1>AI Assistant</h1>
+
+    <p>
+        Ask questions and get AI assistance
+    </p>
+
+</div>
+
+<div class="kdose-form-card">
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <div class="kdose-form-group">
+
+            <label>Ask Anything</label>
+
+            <textarea
+                name="question"
+                class="kdose-textarea"
+                rows="6"
+                placeholder="Type your question here..."></textarea>
+
+        </div>
+
+        <button
+            type="submit"
+            class="kdose-btn">
+
+            Ask AI
+
+        </button>
+
+    </form>
+
+</div>
+
+{% if answer %}
+
+<div class="kdose-form-card">
+
+    <h3>AI Response</h3>
+
+    <textarea
+        class="kdose-textarea"
+        rows="10">{{ answer }}</textarea>
+
+</div>
+
+{% endif %}
+
+{% endblock %}
